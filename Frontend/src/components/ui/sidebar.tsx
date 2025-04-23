@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Drawer } from "antd";
-import { AlignRight } from "lucide-react";
+import { AlignLeft } from "lucide-react";
 import { LuCircleUser } from "react-icons/lu";
 import Link from "next/link";
 import  "../../styles/style.css";
@@ -29,7 +29,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <div className="cursor-pointer" onClick={showDrawer}>
-        <AlignRight />
+        <AlignLeft />
       </div>
       <Drawer
         placement="left"
