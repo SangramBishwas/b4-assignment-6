@@ -13,7 +13,7 @@ const Navbar = () => {
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== "undefined") {
-        if (window.scrollY > lastScrollY) {
+        if (window.scrollY > lastScrollY && window.scrollY > 50) {
           setShow(false);
         } else {
           setShow(true);
