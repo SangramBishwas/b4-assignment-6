@@ -1,0 +1,46 @@
+[
+    {
+      "id": 1,
+      "title": "Sony WH-1000XM5 Wireless Headphones",
+      "description": "Lightly used Sony WH-1000XM5 wireless noise-canceling headphones in black. Excellent sound quality, comes with original case and charging cable. Minor wear on ear cushions but fully functional.",
+      "price": 320.00,
+      "condition": "Used",
+      "images": "https://mobilebuzzbd.com/wp-content/uploads/2024/05/sony-wh-1000xm5-1.jpg",
+      "category": "Electronics",
+      "userID": "seller456",
+      "status": "available"
+    },
+    {
+      "id": 2,
+      "title": "Vintage Leather Jacket",
+      "description": "A stylish vintage leather jacket, size medium, in brown. Gently worn with a classic distressed look. No tears, but some natural patina from use. Perfect for a retro vibe.",
+      "price": 150.00,
+      "condition": "Used",
+      "images": "https://i.ebayimg.com/images/g/sggAAOSwZFxmz2AO/s-l400.jpg",
+      "category": "Clothing",
+      "userID": "seller789",
+      "status": "available"
+    },
+    {
+      "id": 3,
+      "title": "Mid-Century Modern Coffee Table",
+      "description": "A mid-century modern coffee table made of walnut wood. In great condition with minor scratches on the surface, easily restorable. Adds a sleek, vintage touch to any living space.",
+      "price": 250.00,
+      "condition": "Used",
+      "images": "https://m.media-amazon.com/images/I/81diA1TqHmL._AC_UF1000,1000_QL80_.jpg",
+      "category": "Furniture",
+      "userID": "seller101",
+      "status": "available"
+    },
+    {
+      "id": 4,
+      "title": "Limited Edition Harry Potter Book Set",
+      "description": "Complete set of Harry Potter hardcover books, first edition prints. In excellent condition, with only slight yellowing on page edges due to age. Dust jackets intact, a must-have for collectors.",
+      "price": 400.00,
+      "condition": "Used",
+      "images": "https://junipercustom.com/cdn/shop/files/UKHPMU-Angle-1200_2048x.jpg?v=1689361092",
+      "category": "Books",
+      "userID": "seller202",
+      "status": "available"
+    }
+  ]
