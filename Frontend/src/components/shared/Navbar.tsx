@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaRegHeart } from "react-icons/fa";
 import { LuCircleUser } from "react-icons/lu";
-import Sidebar from "../ui/sidebar";
+import Sidebar from "../ui/AntdSidebar";
 
 const Navbar = () => {
   const [show, setShow] = useState(true);
@@ -61,9 +61,11 @@ const Navbar = () => {
           <Link href="/login">Login</Link>
         </div>
         <FaRegHeart className="size-5 sm:block hidden" />
-        <button className="bg-black cursor-pointer text-white text-sm sm:text-base md:text-md px-3 sm:px-4 py-1 rounded-lg transition-all duration-300 hover:opacity-80 active:scale-95 shadow-md hover:shadow-xl w-full sm:w-auto">
-          Post Free Ad +
-        </button>
+        <Link href={"/dashboard/add-product"}>
+          <button className="bg-black cursor-pointer text-white text-sm sm:text-base md:text-md px-3 sm:px-4 py-1 rounded-lg transition-all duration-300 hover:opacity-80 active:scale-95 shadow-md hover:shadow-xl w-full sm:w-auto">
+            Add product +
+          </button>
+        </Link>
       </div>
     </div>
   );

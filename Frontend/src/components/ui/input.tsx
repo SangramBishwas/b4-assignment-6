@@ -1,52 +1,21 @@
-"use client";
+import * as React from "react"
 
-import { useState } from "react";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { cn } from "@/lib/utils"
 
-interface InputProps {
-  label: string;
-  type: string;
-  register?: object;
-  error?: string;
+function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      type={type}
+      data-slot="input"
+      className={cn(
+        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
-const Input: React.FC<InputProps> = ({ type, label, error, register }) => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  return (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-black">{label}</label>
-      <div className="relative">
-        <input
-          placeholder={label}
-          {...register}
-          type={
-            type === "password" ? (showPassword ? "text" : "password") : type
-          }
-          className={`mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none ${
-            error
-              ? "border-red-500 focus:ring-red-500"
-              : "border-black focus:ring-blue-500"
-          }`}
-        />
-        {type === "password" && (
-          <div
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute top-2.5 right-3 cursor-pointer text-gray-500"
-          >
-            {showPassword ? <FiEyeOff /> : <FiEye />}
-          </div>
-        )}
-      </div>
-      {error?.length && (
-        <p className="text-sm text-red-600 flex items-center gap-1 mt-1">
-          <AiOutlineExclamationCircle className="text-base" />
-          {error}
-        </p>
-      )}
-    </div>
-  );
-};
-
-export default Input;
+export { Input }

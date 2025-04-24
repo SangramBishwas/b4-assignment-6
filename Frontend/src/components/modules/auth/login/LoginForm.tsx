@@ -1,5 +1,5 @@
 "use client";
-import Input from "@/components/ui/input";
+import Input from "@/components/ui/AMInput";
 import Link from "next/link";
 // import { useForm } from "react-hook-form";
 import { useForm } from "react-hook-form";
