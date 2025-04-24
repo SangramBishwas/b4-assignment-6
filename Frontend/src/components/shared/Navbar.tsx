@@ -29,10 +29,9 @@ const Navbar = () => {
   }, [lastScrollY]);
 
   const navOptions = [
-    { name: "Ads", path: "/ads" },
+    { name: "Products", path: "/products" },
     { name: "Offer", path: "/offer" },
     { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -43,10 +42,10 @@ const Navbar = () => {
     >
       <div className="flex gap-3 items-center">
         <Sidebar />
-        <div className="mr-5 font-lobster font-bold text-xl">
+        <Link href="/" className="mr-5 font-lobster font-bold text-3xl">
           <span>As</span>
           <span>Mart</span>
-        </div>
+        </Link>
         <div className="md:flex gap-3 hidden">
           {navOptions.map((option) => (
             <Link key={option.name} className="hover:text-primary" href={option.path}>
