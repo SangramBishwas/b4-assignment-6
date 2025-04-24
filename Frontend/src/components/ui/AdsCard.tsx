@@ -1,4 +1,4 @@
-import { IProduct } from "@/types/product.type";
+import { IProduct } from "@/types/product";
 import Image from "next/image";
 import { Button } from "./button";
 
@@ -16,12 +16,16 @@ const AdsCard = ({ product }: { product: IProduct }) => {
           />
         </div>
         <div className="p-4 space-y-2">
-          <h3 className="text-lg font-semibold text-gray-800">{product.title}</h3>
+          <h3 className="text-lg font-semibold text-gray-800">
+            {product.title}
+          </h3>
           <p className="text-sm text-gray-500">
-           {product.description.slice(0, 60)}
+            {product.description.slice(0, 60)}
           </p>
           <div className="flex items-center justify-between">
-            <span className="text-xl font-bold text-indigo-600">{product.price}</span>
+            <span className="text-xl font-bold text-indigo-600">
+              {product.price}
+            </span>
             <div className="flex items-center space-x-1">
               <svg
                 className="w-5 h-5 text-yellow-400"

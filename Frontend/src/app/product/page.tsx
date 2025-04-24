@@ -1,6 +1,6 @@
 "use client";
 import AdsCard from "@/components/ui/AdsCard";
-import { IProduct } from "@/types/product.type";
+import { IProduct } from "@/types/product";
 import { useEffect, useState } from "react";
 
 const Product = () => {

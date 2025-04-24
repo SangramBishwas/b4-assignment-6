@@ -1,25 +1,31 @@
-import { IProduct } from "@/types/product.type";
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { Skeleton } from "./skeleton";
+import { IProduct } from "@/types";
 
 const CategoryCard = ({ product }: { product: IProduct }) => {
   return (
-    <div className="w-64 p-3">
-      <div className="bg-white border shadow-sm hover:bg-black transition duration-300 text-center group cursor-pointer">
-        <Image
-          src={product.images}
-          alt="Product"
-          width={250}
-          height={250}
-          className="mx-auto w-32 h-32 object-contain py-4"
-        />
-
-        <div className="pb-4">
-          <h3 className="text-md font-medium text-gray-800 group-hover:text-white transition">
-            {product.category}
-          </h3>
+    <Link href={`/ads/${product._id}`}>
+      <div className="bg-white group rounded-2xl hover:cursor-pointer md:w-52 md:h-52 flex flex-col items-center justify-evenly p-4 border border-neutral-200">
+        <div className="relative w-full h-28 flex items-center justify-center">
+          {product ? (
+            <Image
+              src={product.images}
+              alt="Category Icon"
+              fill
+              className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-110"
+            />
+          ) : (
+            <Skeleton className="w-16 h-16 rounded-full bg-gray-300" />
+          )}
         </div>
+        <h3 className="font-medium text-center truncate w-full text-gray-800">
+          {product?.title || <Skeleton className="w-32 h-4 bg-gray-300" />}
+        </h3>
       </div>
-    </div>
+    </Link>
   );
 };
 
