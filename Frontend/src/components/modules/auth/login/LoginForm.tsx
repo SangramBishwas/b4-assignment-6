@@ -1,5 +1,5 @@
 "use client";
-import Input from "@/components/ui/input";
+import Input from "@/components/ui/AMInput";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
@@ -9,15 +9,15 @@ interface FormData {
 }
 
 const LoginForm = () => {
-      const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-      const onSubmit = (data: FormData) => {
-        console.log("Form submitted:", data);
-      };
+  const onSubmit = (data: FormData) => {
+    console.log("Form submitted:", data);
+  };
   return (
     <div className="w-full md:w-1/2 p-5 md:p-10 bg-white">
       <h2 className="text-3xl font-bold font-lobster text-black mb-10 sm:mb-16">
