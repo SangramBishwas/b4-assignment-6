@@ -1,5 +1,6 @@
 import { IProduct } from "@/types/product.type";
 import Image from "next/image";
+import { Button } from "./button";
 
 const AdsCard = ({ product }: { product: IProduct }) => {
   return (
@@ -32,9 +33,10 @@ const AdsCard = ({ product }: { product: IProduct }) => {
               <span className="text-sm text-gray-600">(4.5)</span>
             </div>
           </div>
-          <button className="bg-black cursor-pointer text-white text-sm sm:text-base md:text-md px-3 sm:px-4 py-1 rounded-lg transition-all duration-300 hover:opacity-80 active:scale-95 shadow-md hover:shadow-xl w-full sm:w-auto mt-3 md:flex md:ml-auto">
-            View
-          </button>
+        <Button className="flex ml-auto">
+          View
+        </Button>
+          
         </div>
       </div>
     </div>
