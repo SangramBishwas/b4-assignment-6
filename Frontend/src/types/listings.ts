@@ -20,7 +20,8 @@ export type TUser = {
 };
 
 export type TLIsting = {
-    _id: string;
+    id?:string;
+    _id?: string;
     title: string;
     description: string;
     price: number;

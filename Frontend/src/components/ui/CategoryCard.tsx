@@ -22,7 +22,7 @@ const CategoryCard = ({ product }: { product: IProduct }) => {
           )}
         </div>
         <h3 className="font-medium text-center truncate w-full text-gray-800">
-          {product?.title || <Skeleton className="w-32 h-4 bg-gray-300" />}
+          {product.title || <Skeleton className="w-32 h-4 bg-gray-300" />}
         </h3>
       </div>
     </Link>
