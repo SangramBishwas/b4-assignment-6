@@ -1,13 +1,11 @@
+import { IImageFile } from '../../interface/ImageFile';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
-// import { IJwtPayload } from '../auth/auth.interface';
-
+import { IJwtPayload } from '../auth/auth.interface';
 import { UserServices } from './user.service';
 import status from 'http-status';
-// import { IImageFile } from '../../interface/IImageFile';
 
 const myProfile = catchAsync(async (req, res) => {
-  //   console.log('req.user', req.user);
 
   const { id } = req.params;
   const result = await UserServices.myProfile(id);
@@ -20,21 +18,20 @@ const myProfile = catchAsync(async (req, res) => {
   });
 });
 
-// const updateProfile = catchAsync(async (req, res) => {
-//   //   console.log('req.body', req.body);
-//   const result = await UserServices.updateProfile(
-//     req.body,
-//     req.file as IImageFile,
-//     req.user as IJwtPayload,
-//   );
+const updateProfile = catchAsync(async (req, res) => {
+  const result = await UserServices.updateProfile(
+    req.body,
+    req.file as IImageFile,
+    req.user as IJwtPayload,
+  );
 
-//   sendResponse(res, {
-//     statusCode: status.OK,
-//     success: true,
-//     message: `Profile updated successfully`,
-//     data: result,
-//   });
-// });
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: `Profile updated successfully`,
+    data: result,
+  });
+});
 
 const deleteProfile = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -52,4 +49,5 @@ const deleteProfile = catchAsync(async (req, res) => {
 export const UserController = {
   myProfile,
   deleteProfile,
+  updateProfile
 };

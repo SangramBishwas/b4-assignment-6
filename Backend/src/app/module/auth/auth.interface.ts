@@ -9,32 +9,17 @@ export enum UserRole {
 }
 
 
-interface IUserInfo {
-  userAgent?: string; 
-}
-
-export interface IAddress {
-  street: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  country: string;
-}
-
-
 export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
   role: UserRole;
-  userInfo?: IUserInfo;
   lastLogin?: Date;
   isActive: boolean;
-  otpToken?: string | null;
   readonly createdAt: Date;
   updatedAt: Date;
   profileImage?: string;
-  address?: IAddress;
+  address?: string;
   phoneNo?: string;
   gender?: string;
   dateOfBirth?: string;
@@ -43,7 +28,6 @@ export interface IUser extends Document {
 export interface IAuth {
   email: string;
   password: string;
-  userInfo: IUserInfo;
 }
 
 export interface UserModel extends Model<IUser> {

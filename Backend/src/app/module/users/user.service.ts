@@ -1,13 +1,10 @@
 import User from '../auth/auth.model';
 import AppError from '../../errors/appError';
 import status from 'http-status';
-// import { IJwtPayload, IUser } from '../auth/auth.interface';
-// import { IImageFile } from '../../interface/ImageFile';
-// // import { IImageFile } from '../../interface/IImageFile';
-// import { Document } from 'mongoose';
+import { IJwtPayload, IUser } from '../auth/auth.interface';
+import { IImageFile } from '../../interface/ImageFile';
 
 const myProfile = async (id: string) => {
-  //   console.log('authUser', authUser);
 
   const isUserExists = await User.findById(id);
   if (!isUserExists) {
@@ -22,44 +19,33 @@ const myProfile = async (id: string) => {
   };
 };
 
-// const updateProfile = async (
-//   payload: IUser,
-//   file: IImageFile,
-//   authUser: IJwtPayload,
-// ) => {
-//   // Fetch the current user
-//   const isUserExists = await User.findById(authUser._id);
+const updateProfile = async (
+  payload: IUser,
+  file: IImageFile,
+  authUser: IJwtPayload,
+) => {
+  const isUserExists = await User.findById(authUser._id);
 
-//   if (!isUserExists) {
-//     throw new AppError(status.NOT_FOUND, 'User not found!');
-//   }
+  if (!isUserExists) {
+    throw new AppError(status.NOT_FOUND, 'User not found!');
+  }
 
-//   if (!isUserExists.isActive) {
-//     throw new AppError(status.BAD_REQUEST, 'User is not active!');
-//   }
+  if (!isUserExists.isActive) {
+    throw new AppError(status.BAD_REQUEST, 'User is not active!');
+  }
 
-//   if (file && file.path) {
-//     payload.profileImage = file.path;
-//   }
+  if (file && file.path) {
+    payload.profileImage = file.path;
+  }
 
-//   // Merge existing address with new address data
-//   if (payload.address) {
-//     const existingAddress =
-//       (isUserExists.address as unknown as Document)?.toObject() || {};
-//     payload.address = {
-//       ...existingAddress,
-//       ...payload.address,
-//     };
-//   }
+  const result = await User.findOneAndUpdate(
+    { _id: authUser._id },
+    { $set: payload },
+    { new: true, runValidators: true },
+  );
 
-//   const result = await User.findOneAndUpdate(
-//     { _id: authUser._id },
-//     { $set: payload },
-//     { new: true, runValidators: true },
-//   );
-
-//   return result;
-// };
+  return result;
+};
 
 const deleteUser = async (id: string) => {
   const user = await User.findById(id);
@@ -80,4 +66,5 @@ const deleteUser = async (id: string) => {
 export const UserServices = {
   myProfile,
   deleteUser,
+  updateProfile
 };
