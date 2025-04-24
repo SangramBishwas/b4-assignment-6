@@ -3,11 +3,11 @@ import { UserRole } from './auth.interface';
 
 const UserInfoSchema = z.object({
   device: z.enum(['pc', 'mobile']).optional().default('pc'), // Allow only 'pc' or 'mobile'
-  browser: z.string().min(1, 'Browser name is required'),
-  ipAddress: z.string().min(1, 'IP address is required'),
+  browser: z.string().optional(),
+  ipAddress: z.string().optional(),
   pcName: z.string().optional(), // Optional field
   os: z.string().optional(), // Optional field
-  userAgent: z.string().min(1, 'User agent is required'),
+  userAgent: z.string().optional(),
 });
 
 const userValidationSchema = z.object({
@@ -16,7 +16,7 @@ const userValidationSchema = z.object({
     email: z.string().email('Invalid email address'),
     password: z.string().min(6, 'Password must be at least 6 characters long'),
     role: z.enum([UserRole.USER, UserRole.ADMIN]).default(UserRole.USER),
-    userInfo: UserInfoSchema,
+    userInfo: UserInfoSchema.optional(),
   }),
 });
 

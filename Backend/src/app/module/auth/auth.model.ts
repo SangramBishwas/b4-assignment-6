@@ -40,15 +40,12 @@ const userSchema = new Schema<IUser, UserModel>(
       device: {
         type: String,
         enum: ['pc', 'mobile'],
-        required: true,
       },
       browser: {
         type: String,
-        required: true,
       },
       ipAddress: {
         type: String,
-        required: true,
       },
       pcName: {
         type: String,

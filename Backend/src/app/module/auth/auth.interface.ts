@@ -27,10 +27,10 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role: UserRole;
-  userInfo: IUserInfo;
-  lastLogin: Date;
+  userInfo?: IUserInfo;
+  lastLogin?: Date;
   isActive: boolean;
-  otpToken: string | null;
+  otpToken?: string | null;
   readonly createdAt: Date;
   updatedAt: Date;
   profileImage?: string;
