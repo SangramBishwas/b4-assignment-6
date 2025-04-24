@@ -1,7 +1,7 @@
 {
   "name": "assingment-02",
   "version": "1.0.0",
-  "description": "",
+  "description": "Welcome to the **Stationery Shop** project! This is an e-commerce web application designed to showcase and sell stationery products. The project is built using modern web technologies and is deployed on Vercel.",
   "main": "index.js",
   "scripts": {
     "start:prod": "node ./dist/server.js",
@@ -19,7 +19,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongodb": "^6.12.0",
-    "mongoose": "^8.9.0"
+    "mongoose": "^8.9.0",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
