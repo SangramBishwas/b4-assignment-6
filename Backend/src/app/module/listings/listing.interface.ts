@@ -6,7 +6,7 @@ export interface IListing extends Document {
   title: string;
   description: string;
   price: number;
-//   categories: Types.ObjectId;
+  categories: Types.ObjectId;
   condition: ConditionType;
   images: string[];
   userID: Types.ObjectId;
