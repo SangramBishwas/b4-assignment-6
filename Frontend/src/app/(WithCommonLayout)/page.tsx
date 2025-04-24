@@ -1,16 +1,16 @@
 "use server";
-import Slider from "@/components/ui/slider";
+import Slider from "@/components/ui/AntdSlider";
 import Product from "../product/page";
 import Categories from "@/components/modules/categories";
-// import CategoryCard from "@/components/ui/CategoryCard";
 
 const page = () => {
   return (
     <div>
       <Slider />
-      <Product />
-      <Categories />
-      {/* <CategoryCard /> */}
+      <div className="lg:mx-32 mx-5 sm:mx-10">
+        <Product />
+        <Categories />
+      </div>
     </div>
   );
 };

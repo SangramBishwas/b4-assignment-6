@@ -1,18 +1,11 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
 import mongoose, { Schema } from 'mongoose';
 import AppError from '../../errors/appError';
-import { IAddress, IUser, UserModel, UserRole } from './auth.interface';
+import { IUser, UserModel, UserRole } from './auth.interface';
 import config from '../../config';
 import bcrypt from 'bcrypt';
 import status from 'http-status';
 
-const addressSchema = new Schema<IAddress>({
-  street: { type: String, required: true },
-  city: { type: String, required: true },
-  state: { type: String, required: true },
-  postalCode: { type: String, required: true },
-  country: { type: String, required: true },
-});
 
 // Create the User schema based on the interface
 const userSchema = new Schema<IUser, UserModel>(
@@ -36,44 +29,16 @@ const userSchema = new Schema<IUser, UserModel>(
       enum: [UserRole.ADMIN, UserRole.USER],
       default: UserRole.USER,
     },
-    userInfo: {
-      device: {
-        type: String,
-        enum: ['pc', 'mobile'],
-      },
-      browser: {
-        type: String,
-      },
-      ipAddress: {
-        type: String,
-      },
-      pcName: {
-        type: String,
-      },
-      os: {
-        type: String,
-      },
-      userAgent: {
-        type: String,
-      },
-    },
-    lastLogin: {
-      type: Date,
-      default: Date.now,
-    },
     isActive: {
       type: Boolean,
       default: true,
     },
-    otpToken: {
-      type: String,
-      default: null,
-    },
+
     profileImage: { type: String, required: false },
     phoneNo: { type: String, required: false },
     gender: { type: String, required: false },
     dateOfBirth: { type: String, required: false },
-    address: { type: addressSchema, required: false },
+    address: { type: String, required: false },
   },
   {
     timestamps: true,

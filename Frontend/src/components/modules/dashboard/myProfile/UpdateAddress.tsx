@@ -35,14 +35,7 @@ import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import ImagePreviewer from "@/components/ui/core/AMImageUploader/AMImagePreviwer";
 
-const UpdateAddressForm = () => {
-  const [imageFiles, setImageFiles] = useState<File[] | []>([]);
-  console.log("🚀 ~ UpdateAddressForm ~ imageFiles:", imageFiles)
-  const [imagePreview, setImagePreview] = useState<string[] | []>([]);
-//   const { user } = useUser();
-//   const router = useRouter();
-
-const bdDivisions = [
+export const bdDivisions = [
   "Barisal",
   "Chattogram",
   "Dhaka",
@@ -52,6 +45,14 @@ const bdDivisions = [
   "Rangpur",
   "Sylhet",
 ];
+
+const UpdateAddressForm = () => {
+  const [imageFiles, setImageFiles] = useState<File[] | []>([]);
+  console.log("🚀 ~ UpdateAddressForm ~ imageFiles:", imageFiles)
+  const [imagePreview, setImagePreview] = useState<string[] | []>([]);
+//   const { user } = useUser();
+//   const router = useRouter();
+
 
 
   const form = useForm({
