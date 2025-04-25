@@ -4,6 +4,8 @@ import Categories from "@/components/modules/categories";
 import FeaturedProducts from "@/components/modules/featuredProducts";
 import { getAllProducts } from "@/services/ptoducts";
 import { TLIsting } from "@/types";
+import OurPromises from "@/components/modules/ourServices";
+import TestimonialSection from "@/components/modules/testimonial";
 
 const page = async () => {
   const { data: allListings } = await getAllProducts();
@@ -16,7 +18,9 @@ const page = async () => {
       <Slider />
       <div className="lg:mx-32 mx-5 sm:mx-10">
         <FeaturedProducts data={availableProduct} />
+        <TestimonialSection />
         <Categories />
+        <OurPromises />
       </div>
     </div>
   );

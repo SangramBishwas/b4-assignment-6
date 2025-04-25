@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,8 +8,8 @@ import { currencyFormatter } from "@/utils/currencyFormatter";
 import { formatDistanceToNow } from "date-fns";
 import { TWishlistProduct } from "@/types";
 import { Button } from "@/components/ui/button";
-// import { deleteWishlist } from "@/services/wishlist";
-// import { toast } from "sonner";
+import { deleteWishlist } from "@/services/wishlist";
+import { toast } from "sonner";
 
 const WishlistProducts = ({
   wishlistItem,
@@ -23,17 +23,16 @@ const WishlistProducts = ({
   });
 
   const handleDeleteWishlist = async (id: string) => {
-    // try {
-    //   const res = await deleteWishlist(id);
-    //   //   console.log("delete", res);
-    //   if (res.success) {
-    //     toast.success(res.message);
-    //   } else {
-    //     toast.error(res.message);
-    //   }
-    // } catch (error: any) {
-    //   return Error(error);
-    // }
+    try {
+      const res = await deleteWishlist(id);
+      if (res.success) {
+        toast.success(res.message);
+      } else {
+        toast.error(res.message);
+      }
+    } catch (error: any) {
+      return Error(error);
+    }
   };
 
   return (
@@ -72,8 +71,8 @@ const WishlistProducts = ({
               {currencyFormatter(product.price)}
             </span>
             <Button
-            size={"sm"}
-              onClick={() => handleDeleteWishlist(product._id)}
+              size={"sm"}
+              onClick={() => handleDeleteWishlist(product._id!)}
               className="flex items-center gap-2 bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white border-none"
             >
               <Trash2 /> Remove

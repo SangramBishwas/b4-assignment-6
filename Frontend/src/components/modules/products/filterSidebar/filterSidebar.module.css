@@ -1,7 +1,7 @@
 /* Customize the slider track (background) */
 .customSlider [role="slider"] {
-  background-color: #1575b9 !important;
-  border: 2px solid #1575b9;
+  background-color: black !important;
+  border: 2px solid black;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -9,14 +9,14 @@
 
 /* Customize the filled range */
 .customSlider [data-state="range"] {
-  background-color: #1575b9 !important;
+  background-color: black !important;
   height: 4px;
   border-radius: 4px;
 }
 
 /* Customize the entire slider track */
 .customSlider [data-state="track"] {
-  background-color: #1575b9 !important;
+  background-color: black !important;
   height: 4px;
   border-radius: 4px;
 }

@@ -36,7 +36,7 @@ const FeaturedProducts = ({ data }: { data: TLIsting[] }) => {
                       className="pl-1 basis-1/1 md:basis-1/3 lg:basis-1/5"
                     >
                       <div className="p-2">
-                        <Link href={`/listings/${product._id}`}>
+                        <Link href={`/products/${product._id}`}>
                           <Card className="bg-white group border-neutral-200 rounded-2xl shadow-none">
                             <CardContent className="flex flex-col items-center  ">
                               <div className="relative overflow-hidden w-full h-[8rem]">
@@ -50,8 +50,8 @@ const FeaturedProducts = ({ data }: { data: TLIsting[] }) => {
                               </div>
 
                               <h2 className="mt-2 text-md font-medium text-center text-gray-800">
-                                {product.title.length > 10
-                                  ? product.title.slice(0, 10) + "..."
+                                {product.title.length > 15
+                                  ? product.title.slice(0, 15) + "..."
                                   : product.title}
                               </h2>
                               <p className=" group-hover:text-black group-hover:font-bold">

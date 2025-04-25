@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { TLIsting } from "@/types/listings";
@@ -9,90 +8,86 @@ import { formatDistanceToNow } from "date-fns";
 import { Clock4, Heart } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./button";
-// import { addWishlist } from "@/services/wishlist";
+import { addWishlist } from "@/services/wishlist";
 import { TWishlist } from "@/types/wishlist";
 import { toast } from "sonner";
 
 const ProductCard = ({ product }: { product: TLIsting }) => {
-//   const timeAgo = formatDistanceToNow(new Date(product.createdAt), {
-//     addSuffix: true,
-//   });
-
-  // console.log("product", product?.userID);
+  const timeAgo = formatDistanceToNow(new Date(product.createdAt), {
+    addSuffix: true,
+  });
 
   const handleWishlist = async (product: TLIsting) => {
-    // const wishlistProduct: TWishlist = {
-    //   products: [{ product: product._id }],
+    const wishlistProduct: TWishlist = {
+      products: [{ product: product._id! }],
     };
 
-    // try {
-    //   const res = await addWishlist(wishlistProduct);
-    //   // console.log(res);
-    //   if (res.success) {
-    //     toast.success(res.message);
-    //   } else {
-    //     toast.error(res.message);
-    //   }
-    // } catch (error) {
-    //   console.error("Unexpected error:", error);
-    // }
-//   };
+    try {
+      const res = await addWishlist(wishlistProduct);
+      if (res.success) {
+        toast.success(res.message);
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    }
+  };
 
   return (
-    <>
-      <Card className="relative max-w-3xl mb-6 bg-white border-none mx-auto shadow-md rounded-lg overflow-hidden">
-        <CardContent className="flex gap-5">
-          {/* Image Section */}
-          <div className="w-full h-52 md:w-1/3 flex items-center justify-center">
-            <Link href={`/listings/${product._id}`}>
-              <Image
-                src={product.images[0]}
-                alt="Product Image"
-                width={250}
-                height={250}
-                className="w-full h-52 max-w-[250px] object-contain rounded-lg"
-              />
-            </Link>
-          </div>
+    <Card className="relative font-madimi py-0 max-w-3xl mb-6 mx-auto border border-gray-300 rounded-lg overflow-hidden">
+      <CardContent className="flex flex-col md:flex-row gap-5 p-4">
+        {/* Product Image */}
+        <div className="w-full md:w-1/3 flex justify-center items-center">
+          <Link
+            href={`/products/${product._id}`}
+            className="block w-full h-64 md:h-52"
+          >
+            <Image
+              src={product.images[0]}
+              alt="Product Image"
+              width={250}
+              height={250}
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </Link>
+        </div>
 
-          {/* Content Section */}
-          <div className="w-full md:w-2/3 flex flex-col justify-between">
-            <div className="space-y-2">
-              <div className=" flex items-center justify-between">
-                <Link href={`/listings/${product._id}`}>
-                  <h2 className="text-xl font-semibold text-[#1575B9]">
-                    {product.title.length > 30
-                      ? product.title.slice(0, 30) + "..."
-                      : product.title}
-                  </h2>
-                </Link>
-                <Button
-                  onClick={() => handleWishlist(product)}
-                  className=" hover:cursor-pointer bg-none shadow-none text-[#1575B9] text-lg"
-                >
-                  <Heart />
-                </Button>
-              </div>
-
-              <p className="text-gray-600 line-clamp-3">
-                {product.description}
-              </p>
-              <p className="text-lg font-bold text-primary">
-                {currencyFormatter(product.price)}
-              </p>
+        {/* Product Info */}
+        <div className="w-full md:w-2/3 flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-start justify-between">
+              <Link href={`/listings/${product._id}`} className="flex-1">
+                <h2 className="text-lg md:text-xl font-semibold text-black break-words">
+                  {product.title.length > 40
+                    ? product.title.slice(0, 40) + "..."
+                    : product.title}
+                </h2>
+              </Link>
+              <Button
+                onClick={() => handleWishlist(product)}
+                className="ml-2 hover:text-gray-100"
+              >
+                <Heart />
+              </Button>
             </div>
 
-            {/* Status and Time Section */}
-            <div className="mt-4 md:mt-0 flex justify-end items-center text-center text-sm text-gray-600">
-              <div className="flex items-center gap-1">
-                <Clock4 size={20} />
-                
-              </div>
+            <p className="text-gray-600 text-sm md:text-base line-clamp-3">
+              {product.description}
+            </p>
+            <p className="text-lg font-bold text-primary">
+              {currencyFormatter(product.price)}
+            </p>
+          </div>
+
+          {/* Time Section */}
+          <div className="mt-3 md:mt-4 flex justify-end items-center text-sm text-gray-600">
+            <div className="flex items-center gap-1">
+              <Clock4 size={18} />
+              <span>{timeAgo}</span>
             </div>
           </div>
-        </CardContent>
-      </Card>
-    </>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

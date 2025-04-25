@@ -52,7 +52,6 @@ const Navbar = () => {
 
   const navOptions = [
     { name: "Products", path: "/products" },
-    { name: "Offer", path: "/offer" },
     { name: "About", path: "/about" },
   ];
 
@@ -98,7 +97,9 @@ const Navbar = () => {
             <p>Login</p>
           </Link>
         )}
-        <FaRegHeart className="size-5 sm:block hidden" />
+        <Link href="/dashboard/my-favourites">
+          <FaRegHeart className="size-5 sm:block hidden" />
+        </Link>
         <Link href={"/dashboard/add-product"}>
           <button className="bg-black cursor-pointer text-white text-sm sm:text-base md:text-md px-3 sm:px-4 py-1 rounded-lg transition-all duration-300 hover:opacity-80 active:scale-95 shadow-md hover:shadow-xl w-full sm:w-auto">
             Add product +

@@ -1,17 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-// import { toast } from "sonner";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-// import { getAllCategories } from "@/services/category";
+import { getAllCategories } from "@/services/category";
 import { Slider } from "@/components/ui/slider";
 import styles from "./filterSidebar.module.css";
 import { Filter } from "lucide-react";
+import { bdDivisions } from ".";
 import {
   Select,
   SelectContent,
@@ -19,28 +19,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { bdDivisions } from "../../dashboard/myProfile/UpdateAddress";
 
-export default function SmallDeviceSidebar() {
+export default function FilterSidebar() {
   const [price, setPrice] = useState([0]);
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [sidebarVisible, setSidebarVisible] = useState(false); // Manage sidebar visibility
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      //   try {
-      //     const [{ data: categoriesData }] = await Promise.all([
-      //       getAllCategories(),
-      //     ]);
-      //     setCategories(categoriesData);
-      //   } catch (error: any) {
-      //     console.error(error);
-      //     toast.error("Failed to fetch filters");
-      //   } finally {
-      //     setIsLoading(false);
-      //   }
+      try {
+        const [{ data: categoriesData }] = await Promise.all([
+          getAllCategories(),
+        ]);
+        setCategories(categoriesData);
+      } catch (error: any) {
+        console.error(error);
+        toast.error("Failed to fetch filters");
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
@@ -62,7 +61,7 @@ export default function SmallDeviceSidebar() {
       <Button
         onClick={() => setSidebarVisible(!sidebarVisible)}
         size="sm"
-        className="text-white bg-[#1575B9] hover:bg-[#1575B9] mb-6 sm:hidden"
+        className="text-white bg-black hover:bg-black mb-6 sm:hidden"
       >
         {sidebarVisible ? (
           <>
@@ -77,7 +76,7 @@ export default function SmallDeviceSidebar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-white z-50 transition-all duration-300 transform ${
+        className={`fixed font-madimi top-0 left-0 w-64 h-full bg-white z-50 transition-all duration-300 transform ${
           sidebarVisible ? "translate-x-0" : "-translate-x-full"
         } sm:static sm:block sm:w-80 sm:translate-x-0 sm:h-auto sm:bg-transparent sm:overflow-visible`}
       >
@@ -86,19 +85,19 @@ export default function SmallDeviceSidebar() {
             onClick={() => setSidebarVisible(false)}
             size="sm"
             variant="outline"
-            className="absolute top-4 right-4 text-[#1575B9] hover:text-white hover:border-none  hover:bg-red-600"
+            className="absolute top-4 right-4 text-black hover:text-white hover:border-none  hover:bg-red-600"
           >
             X
           </Button>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-[#1575B9]">Filter</h2>
+            <h2 className="text-xl font-semibold text-black">Filter</h2>
             {searchParams.toString().length > 0 && (
               <Button
                 onClick={() => {
                   router.push(`${pathname}`, { scroll: false });
                 }}
                 size="sm"
-                className="text-white bg-[#1575B9] hover:bg-[#1575B9] ml-5"
+                className="text-white bg-black hover:bg-black ml-5"
               >
                 Clear Filters
               </Button>
@@ -114,11 +113,11 @@ export default function SmallDeviceSidebar() {
             <Slider
               max={100000}
               step={1}
-              onValueChange={(value: any) => {
+              onValueChange={(value) => {
                 setPrice(value);
                 handleSearchQuery("price", value[0]);
               }}
-              className={`w-full bg-[#1575B9] h-2 rounded-full ${styles.customSlider}`}
+              className={`w-full bg-black h-2 rounded-full ${styles.customSlider}`}
             />
             <p className="text-sm mt-2">Selected Price: Tk {price[0]}</p>
           </div>
