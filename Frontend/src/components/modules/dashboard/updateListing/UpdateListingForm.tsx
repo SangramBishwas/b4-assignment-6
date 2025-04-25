@@ -1,6 +1,6 @@
 "use client";
 
-import { TCategory, TLIsting } from "@/types/listings";
+import { TCategory, TLIsting } from "@/types";
 import {
   Form,
   FormControl,
