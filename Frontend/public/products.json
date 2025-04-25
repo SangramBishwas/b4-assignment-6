@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "title": "Sony WH-1000XM5 Wireless Headphones",
+    "description": "Lightly used Sony WH-1000XM5 wireless noise-canceling headphones in black. Excellent sound quality, comes with original case and charging cable. Minor wear on ear cushions but fully functional.",
+    "price": 320.0,
+    "condition": "Used",
+    "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYWkGUxbn-m-BxLVQz3rD6FCQpVt8O4_-l2w56oiebuf0b0n8nyKi4sY0hqfvJZ7FF5QU&usqp=CAU",
+    "category": "Electronics",
+    "userID": "seller456",
+    "status": "available"
+  },
+  {
+    "id": 2,
+    "title": "Vintage Leather Jacket",
+    "description": "A stylish vintage leather jacket, size medium, in brown. Gently worn with a classic distressed look. No tears, but some natural patina from use. Perfect for a retro vibe.",
+    "price": 150.0,
+    "condition": "Used",
+    "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQobT15ZsNt9WpiQbC53u8nwntRgXOqcjkwMw&s",
+    "category": "Clothing",
+    "userID": "seller789",
+    "status": "available"
+  },
+  {
+    "id": 3,
+    "title": "Mid-Century Modern Coffee Table",
+    "description": "A mid-century modern coffee table made of walnut wood. In great condition with minor scratches on the surface, easily restorable. Adds a sleek, vintage touch to any living space.",
+    "price": 250.0,
+    "condition": "Used",
+    "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQH5vXGwLdQ-_D7gnG6ARv9balmKfCWdezWQ&s",
+    "category": "Furniture",
+    "userID": "seller101",
+    "status": "available"
+  },
+  {
+    "id": 4,
+    "title": "Limited Edition Harry Potter Book Set",
+    "description": "Complete set of Harry Potter hardcover books, first edition prints. In excellent condition, with only slight yellowing on page edges due to age. Dust jackets intact, a must-have for collectors.",
+    "price": 400.0,
+    "condition": "Used",
+    "images": "https://m.media-amazon.com/images/I/81iqZ2HHD-L._AC_SL1500_.jpg",
+    "category": "Books",
+    "userID": "seller202",
+    "status": "available"
+  },
+  {
+    "id": 5,
+    "title": "Canon EOS 90D DSLR Camera",
+    "description": "Gently used Canon EOS 90D DSLR camera with 32.5MP sensor. Includes original box, battery, and charger. Perfect for photography enthusiasts.",
+    "price": 950.0,
+    "condition": "Used",
+    "images": "https://m.media-amazon.com/images/I/81c+9BOQNWL._AC_SL1500_.jpg",
+    "category": "Electronics",
+    "userID": "seller303",
+    "status": "available"
+  },
+  {
+    "id": 6,
+    "title": "Antique Wooden Rocking Chair",
+    "description": "Classic antique wooden rocking chair with intricate carvings. Shows signs of age but remains sturdy and comfortable.",
+    "price": 180.0,
+    "condition": "Used",
+    "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-C5wAOdbTszG6NyBVvL56-J_k2PFdlM5GRw&s",
+    "category": "Furniture",
+    "userID": "seller404",
+    "status": "available"
+  },
+  {
+    "id": 7,
+    "title": "Apple iPhone 13 Pro Max - 256GB",
+    "description": "Lightly used iPhone 13 Pro Max with 256GB storage. Comes with original box and accessories. Minor scratches on the back.",
+    "price": 850.0,
+    "condition": "Used",
+    "images": "https://m.media-amazon.com/images/I/61i8Vjb17SL._AC_SL1500_.jpg",
+    "category": "Electronics",
+    "userID": "seller505",
+    "status": "available"
+  },
+  {
+    "id": 8,
+    "title": "Designer Handbag - Leather Tote",
+    "description": "Authentic designer leather tote bag in beige. Gently used with minimal signs of wear. Spacious and stylish.",
+    "price": 300.0,
+    "condition": "Used",
+    "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAxIeoyyRjOwajmsPCjWK1RNVu3Ou83ZrJRQ&s",
+    "category": "Clothing",
+    "userID": "seller606",
+    "status": "available"
+  },
+  {
+    "id": 9,
+    "title": "Samsung 55\" QLED 4K Smart TV",
+    "description": "Samsung 55-inch QLED 4K Smart TV in excellent condition. Includes remote and stand. Vivid colors and smart features.",
+    "price": 600.0,
+    "condition": "Used",
+    "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdF7Mfvzd3vUoetj-cqjn0USIWcjSnU9oMvg&s",
+    "category": "Electronics",
+    "userID": "seller707",
+    "status": "available"
+  },
+  {
+    "id": 10,
+    "title": "Mountain Bike - 21 Speed",
+    "description": "Durable mountain bike with 21-speed gear system. Recently serviced and ready for trails. Minor scratches on the frame.",
+    "price": 400.0,
+    "condition": "Used",
+    "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1LLHa8ROM0CtyOxshcsX5UhbgC8RG-2qjNA&s",
+    "category": "Sports",
+    "userID": "seller808",
+    "status": "available"
+  }
+]

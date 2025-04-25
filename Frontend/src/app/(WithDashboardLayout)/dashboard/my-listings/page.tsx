@@ -1,0 +1,14 @@
+import ManageListings from "@/components/modules/products";
+import { getAllProducts } from "@/services/ptoducts";
+
+const UserDashboardPage = async () => {
+  const { data } = await getAllProducts();
+
+  return (
+    <>
+      <ManageListings data={data} />
+    </>
+  );
+};
+
+export default UserDashboardPage;

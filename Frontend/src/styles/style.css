@@ -1,0 +1,26 @@
+/** Sidebar */
+
+.ant-drawer-content-wrapper .ant-drawer-content .ant-drawer-header {
+  border-bottom: 1px solid var(--secondary);
+}
+
+.ant-drawer-body .flex a {
+  color: black;
+}
+
+.ant-drawer-content .ant-drawer-body{
+padding: 0;
+}
+
+.ant-drawer-content .ant-drawer-header{
+    font-family:  Lobster;
+  padding: 17.7px 20px;
+}
+
+.ant-drawer-content-wrapper{
+    font-family: Madimi One;
+}
+
+hr{
+    color: var(--secondary);
+}
