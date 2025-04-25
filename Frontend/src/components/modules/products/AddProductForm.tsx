@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { TCategory } from "@/types/listings";
+import { TCategory } from "@/types";
 import AMImageUploader from "@/components/ui/core/AMImageUploader";
 import ImagePreviewer from "@/components/ui/core/AMImageUploader/AMImagePreviwer";
 import { useEffect, useState } from "react";
@@ -87,18 +87,19 @@ const AddProductForm = () => {
     for (const file of imageFiles) {
       formData.append("images", file);
     }
+    const tostId = toast.loading("Adding product...");
     try {
       const res = await addProduct(formData);
-      // console.log("res", res);
 
       if (res.success) {
-        toast.success(res.message);
+        toast.success(res.message, { id: tostId });
         router.push("/dashboard/my-listings");
       } else {
-        toast.error(res.message);
+        toast.error(res.message, { id: tostId });
       }
     } catch (err: any) {
       console.error(err);
+      toast.error(err.message, { id: tostId });
     }
   };
 
