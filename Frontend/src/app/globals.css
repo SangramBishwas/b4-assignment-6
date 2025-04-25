@@ -136,3 +136,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+[data-sonner-toast][data-styled="true"] {
+  font-family: Madimi One, "sans-serif";
+  border: 1px solid black !important;
+}

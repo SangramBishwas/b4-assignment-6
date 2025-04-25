@@ -1,11 +1,12 @@
-import { LoaderCircle } from "lucide-react";
+import Lottie from "lottie-react";
+import loading from "@/assets/loading.json";
 
-const PBLoading = () => {
+const AMLoading = () => {
   return (
-    <div className="text-center mt-10 text-[#1575B9] font-medium text-lg h-screen flex justify-center items-center">
-      <LoaderCircle className="animate-spin w-8 h-8" />
+    <div className="flex items-center justify-center w-full h-[70vh]">
+      <Lottie className="w-20" animationData={loading} />
     </div>
   );
 };
 
-export default PBLoading;
+export default AMLoading;

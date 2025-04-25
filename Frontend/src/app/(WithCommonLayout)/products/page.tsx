@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client"
+"use client";
 
-import FilterSidebar from "@/components/modules/listings/filterSidebar";
-import SmallDeviceSidebar from "@/components/modules/listings/filterSidebar/SmallDeviceSidebar";
+import FilterSidebar from "@/components/modules/products/filterSidebar";
+import SmallDeviceSidebar from "@/components/modules/products/filterSidebar/SmallDeviceSidebar";
 import AMPagination from "@/components/ui/AMPagination";
 import ProductCard from "@/components/ui/ProductCard";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,39 +16,35 @@ type TListingProps = {
   params: Promise<{ id: string }>;
 };
 
-const AllProducts =  ({ searchParams }: TListingProps) => {
+const AllProducts = ({ searchParams }: TListingProps) => {
+  //   const params = await searchParams;
 
+  //   const page = String(params.page);
+  //   const query = await searchParams;
 
+  //   const { data: allListings, meta } = await getAllListings(
+  //     page,
+  //     undefined,
+  //     query
+  //   );
 
+  //   const availableProduct = allListings?.filter(
+  //     (itm: TLIsting) => itm.status === "available" && itm.userID !== null
+  //   );
 
-//   const params = await searchParams;
-
-//   const page = String(params.page);
-//   const query = await searchParams;
-
-//   const { data: allListings, meta } = await getAllListings(
-//     page,
-//     undefined,
-//     query
-//   );
-
-//   const availableProduct = allListings?.filter(
-//     (itm: TLIsting) => itm.status === "available" && itm.userID !== null
-//   );
-
-//   console.log("meta", meta);
+  //   console.log("meta", meta);
 
   return (
     <>
       <div className=" mt-10">
-          <div className="w-full block md:hidden">
-            <SmallDeviceSidebar />
+        <div className="w-full block md:hidden">
+          <SmallDeviceSidebar />
+        </div>
+        <div className=" flex gap-8">
+          <div className=" hidden md:block w-full max-w-[20rem]">
+            <FilterSidebar />
           </div>
-          <div className=" flex gap-8">
-            <div className=" hidden md:block w-full max-w-[20rem]">
-              <FilterSidebar />
-            </div>
-            {/* <div className="">
+          {/* <div className="">
               {products ? (
                 products.length > 0 ? (
                   products
@@ -73,11 +69,11 @@ const AllProducts =  ({ searchParams }: TListingProps) => {
               )}
 
               {/* Pagination */}
-              {/* <div className="flex items-center justify-end pb-5">
+          {/* <div className="flex items-center justify-end pb-5">
                 <AMPagination totalPage={5} />
               </div>
-            </div> */} 
-          </div>
+            </div> */}
+        </div>
       </div>
     </>
   );
