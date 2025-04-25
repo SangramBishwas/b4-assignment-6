@@ -1,4 +1,4 @@
-# PunarBay - Sustainable E-Commerce for Pre-Loved Goods ♻️
+# AsMart - Sustainable E-Commerce for Pre-Loved Goods ♻️
 
 [![Client Live Link](https://img.shields.io/badge/Client-Live-brightgreen)](https://asmart-project.vercel.app/)
 [![Server Live Link](https://img.shields.io/badge/Server-Live-brightgreen)](https://as-mart-backend-alpha.vercel.app/api/v1)
