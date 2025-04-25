@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -16,86 +17,69 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-// import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { TCategory } from "@/types/listings";
-// import { getAllCategories } from "@/services/category";
-// import { addListig } from "@/services/listings";
-// import { toast } from "sonner";
-// import { useRouter } from "next/navigation";
-// import { useUser } from "@/contexts/UserContext";
-// import { IUser } from "@/types/user";
 import AMImageUploader from "@/components/ui/core/AMImageUploader";
 import ImagePreviewer from "@/components/ui/core/AMImageUploader/AMImagePreviwer";
-import { useState } from "react";
-// import { getMyProfile } from "@/services/users";
-
-export type TPostAddFormProps = {
-  category: TCategory[];
-};
+import { useEffect, useState } from "react";
+import { getMyProfile } from "@/services/users";
+import { IUser } from "@/types";
+import { useUser } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
+import { getAllCategories } from "@/services/category";
+import { toast } from "sonner";
+import { addProduct } from "@/services/ptoducts";
 
 const AddProductForm = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
-//   const [categories, setCategories] = useState<TCategory[] | []>([]);
-//   const [isUser, setIsUser] = useState<IUser | null>(null);
-//   const { user } = useUser();
+  const [categories, setCategories] = useState<TCategory[] | []>([]);
+  const [isUser, setIsUser] = useState<IUser | null>(null);
+  const { user } = useUser();
 
-  // console.log("isUser__", isUser?.address?.city);
+  const router = useRouter();
 
-//   const router = useRouter();
-
-  const form = useForm({
-    defaultValues: {
-      title: "Wooden Dining Table",
-      description: "Solid wood dining table with six chairs.",
-      price: "15000",
-      categories: "Furniture & Home Decor",
-      condition: "Used",
-      location: "Dhaka",
-    },
-  });
+  const form = useForm();
 
   const {
     formState: { isSubmitting },
   } = form;
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//     //   const [categoriesData] = await Promise.all([getAllCategories()]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const [categoriesData] = await Promise.all([getAllCategories()]);
+      console.log("🚀 ~ fetchData ~ categoriesData:", categoriesData);
 
-//       setCategories(categoriesData?.data);
-//     };
+      setCategories(categoriesData?.data);
+    };
 
-//     fetchData();
-//   }, []);
+    fetchData();
+  }, []);
 
-//   useEffect(() => {
-//     if (!user?._id) return;
+  useEffect(() => {
+    if (!user?._id) return;
 
-//     const fetchData = async () => {
-//       try {
-//         const userData = await getMyProfile(user?._id);
-//         setIsUser(userData.data);
-//       } catch (error) {
-//         console.error("Error fetching profile:", error);
-//       }
-//     };
+    const fetchData = async () => {
+      try {
+        const userData = await getMyProfile(user?._id);
+        setIsUser(userData.data);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
 
-//     fetchData();
-//   }, [user?._id]);
+    fetchData();
+  }, [user?._id]);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const modifiedData = {
       ...data,
       price: parseFloat(data.price),
-    //   userID: user?._id,
-    //   location: isUser?.address?.city || "Dhaka",
+      userID: user?._id,
+      location: isUser?.city || "Dhaka",
     };
-
-    // console.log("modifiedData__", modifiedData);
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(modifiedData));
@@ -103,19 +87,19 @@ const AddProductForm = () => {
     for (const file of imageFiles) {
       formData.append("images", file);
     }
-    // try {
-    //   const res = await addListig(formData);
-    //   // console.log("res", res);
+    try {
+      const res = await addProduct(formData);
+      // console.log("res", res);
 
-    //   if (res.success) {
-    //     toast.success(res.message);
-    //     // router.push("/user/dashboard");
-    //   } else {
-    //     toast.error(res.message);
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    // }
+      if (res.success) {
+        toast.success(res.message);
+        router.push("/dashboard/my-listings");
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   return (
@@ -135,7 +119,11 @@ const AddProductForm = () => {
                   <FormItem>
                     <FormLabel>Product Name</FormLabel>
                     <FormControl>
-                      <Input {...field} value={field.value || ""} />
+                      <Input
+                        placeholder="Add product name"
+                        {...field}
+                        value={field.value || ""}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -143,71 +131,77 @@ const AddProductForm = () => {
               />
 
               <div className="grid  grid-cols-1 sm:grid-cols-3 gap-4 ">
-                  <FormField
-                    control={form.control}
-                    name="categories"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Category</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl className="w-full">
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select Product Category" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent className=" bg-slate-100">
-                            {Array(6).map((category) => (
-                              <SelectItem key={category?._id} value={category?._id}>
-                                {category?.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="condition"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Condition</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl className="w-full">
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select Product condition" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent className=" bg-slate-100 font-madimi">
-                            <SelectItem value="new">New</SelectItem>
-                            <SelectItem value="used">Used</SelectItem>
-                            <SelectItem value="refurbished">Refurbished</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="price"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Price</FormLabel>
+                <FormField
+                  control={form.control}
+                  name="categories"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Category</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl className="w-full">
-                          <Input {...field} value={field.value || ""} />
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select product category" />
+                          </SelectTrigger>
                         </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                        <SelectContent className=" bg-slate-100">
+                          {categories.map((category) => (
+                            <SelectItem key={category._id} value={category._id}>
+                              {category.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="condition"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Condition</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl className="w-full">
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select product condition" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className=" bg-slate-100 font-madimi">
+                          <SelectItem value="new">New</SelectItem>
+                          <SelectItem value="used">Used</SelectItem>
+                          <SelectItem value="refurbished">
+                            Refurbished
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price</FormLabel>
+                      <FormControl className="w-full">
+                        <Input
+                          placeholder="Add product price"
+                          {...field}
+                          value={field.value || ""}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
 
               <div className="my-5">
@@ -219,6 +213,7 @@ const AddProductForm = () => {
                       <FormLabel>Description</FormLabel>
                       <FormControl>
                         <Textarea
+                          placeholder="Add product description"
                           className="h-36 resize-none"
                           {...field}
                           value={field.value || ""}
@@ -231,7 +226,7 @@ const AddProductForm = () => {
               </div>
 
               <div>
-                <div className="flex justify-between items-center border-t border-b py-3 my-5">
+                <div className="flex justify-between items-center border-t border-b py-3 mb-5">
                   <p className="text-primary text-xl">Images</p>
                 </div>
                 <div className="flex gap-4 ">

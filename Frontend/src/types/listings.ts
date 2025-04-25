@@ -1,15 +1,5 @@
-export type TCategory = {
-    _id: string;
-    name: string;
-    description: string;
-    icon: string;
-    isActive: boolean;
-    parent: string | null;
-    createdBy: string;
-    createdAt: string;
-    updatedAt: string;
-    __v?: number;
-};
+import { TCategory } from "./category";
+
 
 export type TUser = {
     _id: string;
@@ -20,7 +10,7 @@ export type TUser = {
 };
 
 export type TLIsting = {
-    id?:string;
+    id?: string;
     _id?: string;
     title: string;
     description: string;

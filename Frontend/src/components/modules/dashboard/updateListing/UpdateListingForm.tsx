@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { TCategory, TLIsting } from "@/types/listings";
@@ -21,24 +20,23 @@ import { Input } from "@/components/ui/input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-// import { toast } from "sonner";
-// import { useEffect, useState } from "react";
-// import { getAllCategories } from "@/services/category";
-// import { updateListingProduct } from "@/services/listings";
-// import { useRouter } from "next/navigation";
 import ImagePreviewer from "@/components/ui/core/AMImageUploader/AMImagePreviwer";
 import AMImageUploader from "@/components/ui/core/AMImageUploader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { updateProduct } from "@/services/ptoducts";
+import { toast } from "sonner";
+import { getAllCategories } from "@/services/category";
+import { useRouter } from "next/navigation";
 
 const UpdateListingForm = ({ product }: { product: TLIsting }) => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
-  console.log("🚀 ~ UpdateListingForm ~ imageFiles:", imageFiles)
+  console.log("🚀 ~ UpdateListingForm ~ imageFiles:", imageFiles);
   const [imagePreview, setImagePreview] = useState<string[] | []>(
     product.images || []
   );
   const [categories, setCategories] = useState<TCategory[] | []>([]);
 
-//   const router = useRouter();
+  const router = useRouter();
 
   const form = useForm({
     defaultValues: {
@@ -54,15 +52,15 @@ const UpdateListingForm = ({ product }: { product: TLIsting }) => {
     formState: { isSubmitting },
   } = form;
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const [categoriesData] = await Promise.all([getAllCategories()]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const [categoriesData] = await Promise.all([getAllCategories()]);
 
-//       setCategories(categoriesData?.data);
-//     };
+      setCategories(categoriesData?.data);
+    };
 
-//     fetchData();
-//   }, []);
+    fetchData();
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const modifiedData = {
@@ -73,25 +71,28 @@ const UpdateListingForm = ({ product }: { product: TLIsting }) => {
     console.log("modifiedData__", modifiedData);
 
     const formData = new FormData();
-    console.log("🚀 ~ constonSubmit:SubmitHandler<FieldValues>= ~ formData:", formData)
-    
+    console.log(
+      "🚀 ~ constonSubmit:SubmitHandler<FieldValues>= ~ formData:",
+      formData
+    );
+
     for (const file of imageFiles) {
-        formData.append("images", file);
+      formData.append("images", file);
     }
     formData.append("data", JSON.stringify(modifiedData));
-    // try {
-    // //   const res = await updateListingProduct(formData, product._id);
-    //     console.log("updateListingProduct", res);
+    try {
+      const res = await updateProduct(formData, product._id!);
+      console.log("updateListingProduct", res);
 
-    //   if (res.success) {
-    //     toast.success(res.message);
-    //     router.push("/user/dashboard");
-    //   } else {
-    //     toast.error(res.message);
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    // }
+      if (res.success) {
+        toast.success(res.message);
+        router.push("/dashboard/my-listings");
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -24,51 +24,47 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-// import { changeListingStatus } from "@/services/listings";
 import { toast } from "sonner";
 import { useState } from "react";
+import { changeProductStatus } from "@/services/ptoducts";
 
 const StatusModal = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
 
-  const form = useForm({
-    defaultValues: {
-      status: "",
-    },
-  });
+  const form = useForm();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // const status = data.status as string;
+    const status = data.status as string;
 
-    // try {
-    //   const res = await changeListingStatus(id, status);
-    //   // console.log("Status updated:", res);
+    try {
+      const res = await changeProductStatus(id, status);
 
-    //   if (res.success) {
-    //     toast.success(res.message);
-    //     setOpen(false);
-    //   } else {
-    //     toast.error(res.message);
-    //     setOpen(false);
-    //   }
-    // } catch (error: any) {
-    //   return Error(error);
-    //   setOpen(false);
-    // }
+      if (res.success) {
+        toast.success(res.message);
+        setOpen(false);
+      } else {
+        toast.error(res.message);
+        setOpen(false);
+      }
+    } catch (error: any) {
+      return Error(error);
+      setOpen(false);
+    }
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size={"sm"} className="bg-[#1575B9] hover:bg-blue-600 text-white font-medium px-6 py-2 rounded-lg">
+        <Button
+          size={"sm"}
+          className="bg-[#1575B9] hover:bg-blue-600 text-white font-medium px-6 py-2 rounded-lg"
+        >
           Status
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-white w-[22rem] font-madimi">
         <DialogHeader>
-          <DialogTitle >
-            Are you sure change the status?
-          </DialogTitle>
+          <DialogTitle>Are you sure change the status?</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form
@@ -99,7 +95,7 @@ const StatusModal = ({ id }: { id: string }) => {
               )}
             />
             <Button
-            size={"sm"}
+              size={"sm"}
               type="submit"
               className="w-full bg-black text-white hover:bg-black/80 hover:cursor-pointer"
             >
