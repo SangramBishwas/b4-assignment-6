@@ -1,10 +1,8 @@
 import { Schema, model, Document } from 'mongoose';
 import { ICategory } from './category.interface';
 
-// Extend Mongoose Document with ICategory
 interface ICategoryDocument extends Document, ICategory { }
 
-// Define the schema
 const categorySchema = new Schema<ICategoryDocument>(
     {
         name: {
@@ -17,11 +15,6 @@ const categorySchema = new Schema<ICategoryDocument>(
             type: String,
             trim: true,
         },
-        parent: {
-            type: Schema.Types.ObjectId,
-            ref: 'Category',
-            default: null,
-        },
         isActive: {
             type: Boolean,
             default: true,
@@ -33,7 +26,6 @@ const categorySchema = new Schema<ICategoryDocument>(
         },
         icon: {
             type: String,
-            trim: true,
         },
     },
     {

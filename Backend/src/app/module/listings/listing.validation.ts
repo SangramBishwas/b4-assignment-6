@@ -4,7 +4,7 @@ const listingValidationSchema = z.object({
   body: z.object({
     title: z
       .string()
-      .min(5, 'Title must be at least 5 characters long')
+      .min(1, 'Title must be at least 1 characters long')
       .max(100),
     description: z
       .string()

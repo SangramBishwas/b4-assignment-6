@@ -7,7 +7,6 @@ const createCategoryValidationSchema = z.object({
             .nonempty("Category name is required")
             .max(100, "Category name should not exceed 100 characters"),
         description: z.string().optional(),
-        parent: z.string().optional().nullable()
     })
 });
 

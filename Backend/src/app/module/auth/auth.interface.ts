@@ -16,7 +16,12 @@ export interface IUser extends Document {
   role: UserRole;
   lastLogin?: Date;
   isActive: boolean;
-  readonly createdAt: Date;
+  street?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+  createdAt: Date;
   updatedAt: Date;
   profileImage?: string;
   address?: string;

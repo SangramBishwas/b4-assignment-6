@@ -29,7 +29,7 @@ const getAllCategory = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: status.OK,
         success: true,
-        message: 'category are retrieved succesfully',
+        message: 'Category are retrieved succesfully',
         meta: result.meta,
         data: result.result,
     });
