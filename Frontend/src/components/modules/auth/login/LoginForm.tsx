@@ -4,7 +4,7 @@ import Input from "@/components/ui/AMInput";
 import { useUser } from "@/context/UserContext";
 import { loginUser } from "@/services/auth";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 interface FormData {
@@ -20,8 +20,6 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirectPath");
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -31,11 +29,7 @@ const LoginForm = () => {
       if (res?.success) {
         await fetchUser();
         toast.success(res?.message, { id: tostId });
-        if (redirect) {
-          router.push(redirect);
-        } else {
-          router.push("/dashboard/my-account");
-        }
+        router.push("/dashboard/my-account");
       } else {
         toast.error(res?.message, { id: tostId });
       }

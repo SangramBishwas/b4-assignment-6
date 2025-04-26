@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import ImagePreviewer from "@/components/ui/core/AMImageUploader/AMImagePreviwer";
 import AMImageUploader from "@/components/ui/core/AMImageUploader";
 import { useEffect, useState } from "react";
-import { updateProduct } from "@/services/ptoducts";
+import { updateProduct } from "@/services/products";
 import { toast } from "sonner";
 import { getAllCategories } from "@/services/category";
 import { useRouter } from "next/navigation";

@@ -3,24 +3,18 @@ import cors from 'cors';
 import router from './app/routes';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 import notFoundHandler from './app/middleware/notFoundHandler';
-// import { ProductRoutes } from './modules/product/product.route';
-// import { OrderRoutes } from './modules/order/order.route';
 const app: Application = express();
 
 
-app.use(cors());
-// app.use(cookieParser());
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'http://localhost:3001', 'https://asmart-project.vercel.app'],
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1', router);
-
-
-//App Router
-// app.use('/api/products', ProductRoutes);
-// app.use('/api/orders', OrderRoutes);
-
-
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
@@ -28,6 +22,5 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use(globalErrorHandler);
 app.use(notFoundHandler);
-// app.use(notFound);
 
 export default app;

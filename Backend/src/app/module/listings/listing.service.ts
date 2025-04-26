@@ -18,7 +18,6 @@ const createListingIntoDB = async (
 
   productData.images = images.map((image) => image.path);
 
-  // Create a new Listing document using the model, not just a plain object
   const newProduct = new Listing(productData); // Create a Listing instance
 
   const result = await newProduct.save();

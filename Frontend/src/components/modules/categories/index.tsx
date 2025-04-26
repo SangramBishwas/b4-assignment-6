@@ -4,6 +4,7 @@ import { getAllCategories } from "@/services/category";
 import { TCategory } from "@/types";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const Categories = async () => {
   const { data: categories } = await getAllCategories();
@@ -20,7 +21,12 @@ const Categories = async () => {
       </div>
       <div className="mt-5 grid grid-cols-2 md:flex md:flex-wrap items-center justify-center gap-4">
         {categories?.map((category: TCategory, idx: number) => (
-          <CategoryCard key={idx} category={category} />
+          <Suspense
+            key={idx}
+            fallback={<div className="w-full h-52 bg-gray-100 rounded-2xl" />}
+          >
+            <CategoryCard category={category} />
+          </Suspense>
         ))}
       </div>
     </div>

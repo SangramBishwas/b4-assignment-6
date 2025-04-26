@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useState } from "react";
-import { changeProductStatus } from "@/services/ptoducts";
+import { changeProductStatus } from "@/services/products";
 
 const StatusModal = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);

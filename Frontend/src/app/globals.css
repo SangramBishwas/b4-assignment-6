@@ -8,15 +8,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --font-berkshire: Berkshire Swash, "serif";
-  --font-righteous: Righteous, "sans-serif";
-  --font-lobster: Lobster, "sans-serif";
-  --font-madimi: Madimi One, "sans-serif";
-  --font-aladin: Aladin, "system-ui";
-  --font-faster: Faster One, "system-ui";
-  --font-saira: Saira Stencil One, "sans-serif";
-  --font-protest: Protest Guerrilla, "sans-serif";
+@theme inline {
+  --font-lobster: var(--font-lobster);
+  --font-madimi: var(--font-madimi);
   --color-primary: #101828;
   --color-secondary: #d4d4d4;
 }

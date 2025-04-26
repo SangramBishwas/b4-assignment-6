@@ -1,10 +1,17 @@
 import AMLoading from "@/components/ui/AMLoading";
 import ProductCard from "@/components/ui/ProductCard";
-import { getAllProducts } from "@/services/ptoducts";
+import { getAllProducts } from "@/services/products";
 import { TLIsting } from "@/types/listings";
 import { useEffect, useState } from "react";
 
-const SimilarProducts = ({ category }: { category: string }) => {
+const SimilarProducts = ({
+  product,
+  category,
+}: {
+  product: string | undefined;
+  category: string;
+}) => {
+  console.log("🚀 ~ product:", product);
   const [similarData, setSimilarData] = useState<TLIsting[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -12,7 +19,10 @@ const SimilarProducts = ({ category }: { category: string }) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [similarArray] = await Promise.all([getAllProducts()]);
+
+        const query = { categories: category };
+        const similarArray = await getAllProducts(undefined, undefined, query);
+
         setSimilarData(similarArray?.data || []);
       } catch (error) {
         console.error("Error fetching similar ads:", error);
@@ -20,12 +30,12 @@ const SimilarProducts = ({ category }: { category: string }) => {
         setLoading(false);
       }
     };
-    fetchData();
-  }, []);
 
-  const categoryBaseArray = similarData?.filter(
-    (itm: TLIsting) => itm?.categories?.name === category
-  );
+    fetchData();
+  }, [category]);
+
+  const categoryBaseArray = similarData.filter((item) => item._id !== product);
+  console.log("🚀 ~ SimilarProducts ~ categoryBaseArray:", categoryBaseArray);
 
   return (
     <>

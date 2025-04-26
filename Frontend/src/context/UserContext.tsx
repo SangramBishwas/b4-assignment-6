@@ -14,7 +14,7 @@ import {
 interface IUserProviderValues {
   user: IUser | null;
   isLoading: boolean;
-  setUser: (user: IUser) => void;
+  setUser: (user: IUser | null) => void;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   fetchUser: () => Promise<void>;
 }

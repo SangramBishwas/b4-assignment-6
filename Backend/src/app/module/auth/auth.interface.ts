@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { Document, Model } from 'mongoose';
+import { Model } from 'mongoose';
 
 
 export enum UserRole {
@@ -9,7 +9,7 @@ export enum UserRole {
 }
 
 
-export interface IUser extends Document {
+export interface IUser {
   name: string;
   email: string;
   password: string;

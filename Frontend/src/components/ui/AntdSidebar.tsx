@@ -8,16 +8,15 @@ import Link from "next/link";
 import "../../styles/style.css";
 import { FaRegHeart } from "react-icons/fa";
 import { TiFolderOpen } from "react-icons/ti";
-import { BsInfoSquare } from "react-icons/bs";
+import { TbInfoSquare } from "react-icons/tb";
 import Image from "next/image";
 import { getAllCategories } from "@/services/category";
-import { TCategory } from "@/types";
+import { IUser, TCategory } from "@/types";
 
-const Sidebar: React.FC = () => {
+const Sidebar = ({ isUser }: { isUser: IUser }) => {
   const [open, setOpen] = useState(false);
   const [categories, setCategories] = useState<TCategory[] | null>([]);
 
-  // Fetch categories once on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,24 +40,19 @@ const Sidebar: React.FC = () => {
 
   const sidebarOptions = [
     {
-      name: "Login",
-      path: "/login",
-      icon: <LuCircleUser className="size-4" />,
-    },
-    {
       name: "Wishlist",
       path: "/dashboard/my-favourites",
-      icon: <FaRegHeart className="size-4" />,
+      icon: <FaRegHeart className="size-5.5" />,
     },
     {
       name: "My Listings",
       path: "/dashboard/my-listings",
-      icon: <TiFolderOpen className="size-4" />,
+      icon: <TiFolderOpen className="size-5.5" />,
     },
     {
       name: "About Us",
       path: "/about",
-      icon: <BsInfoSquare className="size-4" />,
+      icon: <TbInfoSquare className="size-5.5" />,
     },
   ];
 
@@ -72,27 +66,58 @@ const Sidebar: React.FC = () => {
         onClose={onClose}
         open={open}
         title={
-          <div className="mr-5 font-bold text-xl flex">
+          <div className="ml-3 font-bold text-2xl flex">
             <span>As</span>
             <span>Mart</span>
           </div>
         }
       >
-        <div className="space-y-4 m-5">
+        <div className="ml-2.5 py-3 border-b border-b-neutral-400">
+          {isUser?.profileImage ? (
+            <div onClick={onClose} className="flex gap-2 items-center">
+              {isUser.profileImage === "N/A" ? (
+                <LuCircleUser className="size-6" />
+              ) : (
+                <Image
+                  src={isUser.profileImage}
+                  alt={isUser.name}
+                  width={24}
+                  height={24}
+                  className="rounded-full object-cover h-6 w-6 overflow-hidden border-2 border-black"
+                />
+              )}
+              <Link href="/dashboard/my-account">Dashboard</Link>
+            </div>
+          ) : (
+            <Link href="/login" className="flex gap-2 items-center">
+              <LuCircleUser className="size-6" />
+              <p>Login</p>
+            </Link>
+          )}
+        </div>
+
+        <div className="space-y-4 ml-2.5 my-5">
           {sidebarOptions.map((option) => (
-            <div key={option.name} className="flex gap-2 items-center">
+            <div
+              onClick={onClose}
+              key={option.name}
+              className="flex gap-2 items-center"
+            >
               {option.icon}
               <Link href={option.path}>{option.name}</Link>
             </div>
           ))}
         </div>
-        <hr className="my-4" />
-        <div className="m-5">
+
+        <hr className="my-4 border-neutral-400" />
+        <div className="mx-2.5">
           <p className="mb-4 font-semibold">CATEGORIES</p>
           {categories?.map((category, index) => (
-            <div
+            <Link
+              onClick={onClose}
+              href={`/products?categories=${category._id}`}
               key={category._id || index}
-              className="flex gap-3 items-center mb-3"
+              className="flex gap-3 items-center mb-3 cursor-pointer"
             >
               <Image
                 src={
@@ -104,7 +129,7 @@ const Sidebar: React.FC = () => {
                 height={20}
               />
               <p>{category.name}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </Drawer>

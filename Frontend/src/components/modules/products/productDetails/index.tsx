@@ -1,6 +1,6 @@
 "use client";
 
-import { TLIsting } from "@/types/listings";
+import { TLIsting } from "@/types";
 import { currencyFormatter } from "@/utils/currencyFormatter";
 import { formatDistanceToNow } from "date-fns";
 import { Clock4, Facebook, Linkedin, Twitter } from "lucide-react";
@@ -47,7 +47,7 @@ const ProductDetails = ({ product }: { product: TLIsting }) => {
 
               <div className="flex flex-wrap items-center gap-2">
                 <p className="text-lg font-semibold">Product ID:</p>
-                <p className="text-gray-600">{product._id?.slice(0, 11)}</p>
+                <p className="text-gray-600">{product?._id?.slice(0, 11)}</p>
               </div>
             </div>
 
@@ -76,7 +76,10 @@ const ProductDetails = ({ product }: { product: TLIsting }) => {
 
       <section className="my-10 grid grid-cols-1 md:grid-cols-7 gap-7">
         <div className="col-span-1 md:col-span-5 bg-white rounded-lg py-6 md:py-8">
-          <SimilarProducts category={product?.categories.name} />
+          <SimilarProducts
+            product={product?._id}
+            category={product?.categories._id}
+          />
         </div>
 
         <div className="col-span-1 md:col-span-2 hidden md:block"></div>
