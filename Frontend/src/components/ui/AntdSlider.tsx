@@ -13,6 +13,8 @@ const Slider: React.FC = () => {
             style={{
               color: "#fff",
               backgroundImage: `url(${image.img})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           />
         </div>

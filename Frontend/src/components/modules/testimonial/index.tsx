@@ -19,7 +19,7 @@ const TestimonialSection = () => {
 
   return (
     <>
-      <div className="font-madimi grid grid-cols-6 items-center gap-6">
+      <div className="font-madimi grid grid-cols-6 items-center gap-4">
         <div className=" col-span-full md:col-span-2">
           <div className=" space-y-5">
             <Button>What our users say</Button>
@@ -40,11 +40,14 @@ const TestimonialSection = () => {
           >
             <CarouselContent>
               {testimonials?.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-1 md:basis-1/3">
+                <CarouselItem
+                  key={index}
+                  className=" md:basis-1/1 lg:basis-1/3"
+                >
                   <div className="p-1">
                     <Card className="w-full max-w-sm p-4 hover:shadow-sm border-none bg-white">
-                      <CardContent className="flex flex-col items-start text-start gap-4 mt-5 mb-3">
-                        <span className="text-3xl font-semibold">
+                      <CardContent className="flex flex-col items-start text-start gap-2 mt-5 mb-3">
+                        <span className="lg:text-3xl text-xl font-semibold">
                           {testimonial.name}
                         </span>
                         <p className="text-sm text-gray-500">

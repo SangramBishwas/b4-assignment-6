@@ -1,26 +1,30 @@
 /** Sidebar */
 
 .ant-drawer-content-wrapper .ant-drawer-content .ant-drawer-header {
-  border-bottom: 1px solid var(--secondary);
+  background-color: black;
+  color: white;
 }
 
-.ant-drawer-body .flex a {
+.ant-drawer-body a {
   color: black;
 }
 
-.ant-drawer-content .ant-drawer-body{
-padding: 0;
+.ant-drawer-content .ant-drawer-body {
+  padding: 0;
 }
 
-.ant-drawer-content .ant-drawer-header{
-    font-family:  Lobster;
+.ant-drawer-content .ant-drawer-header {
+  font-family: Lobster;
   padding: 17.7px 20px;
 }
 
-.ant-drawer-content-wrapper{
-    font-family: Madimi One;
+.ant-drawer-content-wrapper {
+  font-family: Madimi One;
 }
 
-hr{
-    color: var(--secondary);
+.ant-drawer-header-title button .anticon {
+  color: white;
+  border: 2px solid white;
+  border-radius: 20%;
+  padding: 2px;
 }

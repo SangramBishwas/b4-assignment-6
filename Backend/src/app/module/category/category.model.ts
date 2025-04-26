@@ -1,7 +1,7 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { ICategory } from './category.interface';
 
-interface ICategoryDocument extends Document, ICategory { }
+interface ICategoryDocument extends ICategory { }
 
 const categorySchema = new Schema<ICategoryDocument>(
     {

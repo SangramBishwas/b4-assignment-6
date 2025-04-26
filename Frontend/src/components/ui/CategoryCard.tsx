@@ -1,13 +1,22 @@
 "use client";
 
 import Image from "next/image";
-// import Link from "next/link";
 import { Skeleton } from "./skeleton";
 import { TCategory } from "@/types";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const CategoryCard = ({ category }: { category: TCategory }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleSearchQuery = (query: string, value: string | number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(query, value.toString());
+    router.push(`/products?${params.toString()}`, { scroll: false });
+  };
+
   return (
-    <div>
+    <div onClick={() => handleSearchQuery("categories", category._id)}>
       <div className="bg-white group rounded-2xl hover:cursor-pointer md:w-52 md:h-52 flex flex-col items-center justify-evenly p-4 border border-neutral-200">
         <div className="relative w-full h-28 flex items-center justify-center">
           {category ? (

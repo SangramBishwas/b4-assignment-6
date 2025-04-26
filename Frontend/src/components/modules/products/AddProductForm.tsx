@@ -30,7 +30,7 @@ import { useUser } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { getAllCategories } from "@/services/category";
 import { toast } from "sonner";
-import { addProduct } from "@/services/ptoducts";
+import { addProduct } from "@/services/products";
 
 const AddProductForm = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);

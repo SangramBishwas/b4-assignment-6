@@ -6,11 +6,18 @@ import { cookies } from "next/headers";
 
 export const getMyProfile = async (id: string) => {
     try {
+        const cookieStore = await cookies();
+        const accessToken = cookieStore.get("accessToken")?.value;
+
+        if (!accessToken) {
+            throw new Error("Access token not found");
+        }
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/user/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: (await cookies()).get("accessToken")!.value,
+                Authorization: accessToken,
             },
             next: {
                 tags: ["USER"],

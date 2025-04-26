@@ -14,16 +14,21 @@ const Navbar = () => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isUser, setIsUser] = useState<IUser | null>(null);
-  console.log("🚀 ~ Navbar ~ isUser:", isUser);
   const { user } = useUser();
 
   useEffect(() => {
-    if (!user?._id) return;
+    if (!user?._id) {
+      return;
+    }
 
     const fetchData = async () => {
       try {
-        const userData = await getMyProfile(user?._id);
-        setIsUser(userData.data);
+        const userData = await getMyProfile(user._id);
+        if (userData?.data) {
+          setIsUser(userData.data);
+        } else {
+          console.error("No user data found.");
+        }
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
@@ -62,7 +67,7 @@ const Navbar = () => {
       }`}
     >
       <div className="flex gap-3 items-center">
-        <Sidebar />
+        <Sidebar isUser={isUser!} />
         <Link href="/" className="mr-5 font-lobster font-bold text-3xl">
           <span>As</span>
           <span>Mart</span>
@@ -79,16 +84,21 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-      <div className="flex items-center gap-5">
+
+      <div className="flex items-center sm:gap-5">
         {isUser?.profileImage ? (
           <div className="sm:flex hidden gap-2 items-center">
-            <Image
-              src={isUser?.profileImage}
-              alt={isUser?.name}
-              width={24}
-              height={24}
-              className="rounded-full border-2 border-black"
-            />
+            {isUser.profileImage === "N/A" ? (
+              <LuCircleUser className="size-6" />
+            ) : (
+              <Image
+                src={isUser.profileImage}
+                alt={isUser.name}
+                width={24}
+                height={24}
+                className="rounded-full object-cover h-6 w-6 overflow-hidden border-2 border-black"
+              />
+            )}
             <Link href="/dashboard/my-account">Dashboard</Link>
           </div>
         ) : (
@@ -97,10 +107,12 @@ const Navbar = () => {
             <p>Login</p>
           </Link>
         )}
+
         <Link href="/dashboard/my-favourites">
           <FaRegHeart className="size-5 sm:block hidden" />
         </Link>
-        <Link href={"/dashboard/add-product"}>
+
+        <Link href="/dashboard/add-product">
           <button className="bg-black cursor-pointer text-white text-sm sm:text-base md:text-md px-3 sm:px-4 py-1 rounded-lg transition-all duration-300 hover:opacity-80 active:scale-95 shadow-md hover:shadow-xl w-full sm:w-auto">
             Add product +
           </button>

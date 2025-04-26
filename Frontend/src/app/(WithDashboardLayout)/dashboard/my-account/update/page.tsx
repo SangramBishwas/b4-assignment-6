@@ -2,9 +2,9 @@ import UpdateAddressForm from "@/components/modules/dashboard/myProfile/UpdateAd
 const UpdateAccountPage = async () => {
   return (
     <>
-        <div className=" p-6">
-          <UpdateAddressForm />
-        </div>
+      <div className=" p-6">
+        <UpdateAddressForm />
+      </div>
     </>
   );
 };

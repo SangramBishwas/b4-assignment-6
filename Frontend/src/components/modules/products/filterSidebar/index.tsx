@@ -116,7 +116,12 @@ export default function FilterSidebar() {
               value="new"
               id="new"
             />
-            <Label className="text-gray-500 font-light">New</Label>
+            <Label
+              htmlFor="new"
+              className="text-gray-500 cursor-pointer font-light"
+            >
+              New
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
@@ -124,7 +129,12 @@ export default function FilterSidebar() {
               value="used"
               id="used"
             />
-            <Label className="text-gray-500 font-light">Used</Label>
+            <Label
+              htmlFor="used"
+              className="text-gray-500 cursor-pointer font-light"
+            >
+              Used
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
@@ -132,7 +142,12 @@ export default function FilterSidebar() {
               value="refurbished"
               id="refurbished"
             />
-            <Label className="text-gray-500 font-light">Refurbished</Label>
+            <Label
+              htmlFor="refurbished"
+              className="text-gray-500 cursor-pointer font-light"
+            >
+              Refurbished
+            </Label>
           </div>
         </RadioGroup>
       </div>
@@ -183,7 +198,7 @@ export default function FilterSidebar() {
                 />
                 <Label
                   htmlFor={category._id}
-                  className="text-gray-500 font-light"
+                  className="text-gray-500 cursor-pointer font-light"
                 >
                   {category.name}
                 </Label>

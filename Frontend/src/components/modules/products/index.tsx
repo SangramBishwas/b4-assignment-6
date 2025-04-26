@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import StatusModal from "./StatusModal";
 import { useUser } from "@/context/UserContext";
-import { deleteProduct } from "@/services/ptoducts";
+import { deleteProduct } from "@/services/products";
 import { toast } from "sonner";
 
 export type TListingsProps = {

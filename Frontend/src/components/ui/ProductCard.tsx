@@ -33,12 +33,12 @@ const ProductCard = ({ product }: { product: TLIsting }) => {
   };
 
   return (
-    <Card className="relative font-madimi py-0 max-w-3xl mb-6 mx-auto border border-gray-300 rounded-lg overflow-hidden">
+    <Card className="relative w-full font-madimi py-0 mx-auto border border-gray-300 rounded-lg overflow-hidden">
       <CardContent className="flex flex-col md:flex-row gap-5 p-4">
         {/* Product Image */}
         <div className="w-full md:w-1/3 flex justify-center items-center">
           <Link
-            href={`/products/${product._id}`}
+            href={`/product/${product._id}`}
             className="block w-full h-64 md:h-52"
           >
             <Image
@@ -55,7 +55,7 @@ const ProductCard = ({ product }: { product: TLIsting }) => {
         <div className="w-full md:w-2/3 flex flex-col justify-between">
           <div className="space-y-2">
             <div className="flex items-start justify-between">
-              <Link href={`/listings/${product._id}`} className="flex-1">
+              <Link href={`/product/${product._id}`} className="flex-1">
                 <h2 className="text-lg md:text-xl font-semibold text-black break-words">
                   {product.title.length > 40
                     ? product.title.slice(0, 40) + "..."

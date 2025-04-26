@@ -14,9 +14,9 @@ import { currencyFormatter } from "@/utils/currencyFormatter";
 const FeaturedProducts = ({ data }: { data: TLIsting[] }) => {
   return (
     <>
-      <div className="mt-4 md:mt-10 font-madimi">
+      <div className="my-4 md:my-10 font-madimi">
         <div>
-          <div className=" flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <h2 className=" text-lg font-semibold">Featured Products</h2>
             <div></div>
           </div>
@@ -33,10 +33,10 @@ const FeaturedProducts = ({ data }: { data: TLIsting[] }) => {
                   ?.map((product) => (
                     <CarouselItem
                       key={product._id}
-                      className="pl-1 basis-1/1 md:basis-1/3 lg:basis-1/5"
+                      className="basis-1/1 sm:basis-1/3 lg:basis-1/5"
                     >
                       <div className="p-2">
-                        <Link href={`/products/${product._id}`}>
+                        <Link href={`/product/${product._id}`}>
                           <Card className="bg-white group border-neutral-200 rounded-2xl shadow-none">
                             <CardContent className="flex flex-col items-center  ">
                               <div className="relative overflow-hidden w-full h-[8rem]">

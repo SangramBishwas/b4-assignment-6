@@ -4,7 +4,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, CheckCircle, Mail, UserRound } from "lucide-react";
-import { TUser } from "@/types/listings";
+import { TUser } from "@/types";
 import { useState, useEffect } from "react";
 import { IUser } from "@/types/user";
 import { getMyProfile } from "@/services/users";
@@ -23,7 +23,7 @@ const UserCard = ({ user, timeAgo }: TUserProps) => {
     const fetchData = async () => {
       try {
         const userData = await getMyProfile(user?._id);
-        setIsUser(userData.data);
+        setIsUser(userData?.data);
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
