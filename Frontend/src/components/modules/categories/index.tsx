@@ -12,7 +12,7 @@ const Categories = async () => {
   return (
     <div className="my-4 md:my-10 font-madimi mx-auto">
       <div className="flex items-center justify-between">
-        <h2 className=" text-lg font-semibold">Categories</h2>
+        <h2 className="text-lg md:text-xl font-semibold">Categories</h2>
         <Link href="/products">
           <Button size={"sm"}>
             View All <ArrowRight />

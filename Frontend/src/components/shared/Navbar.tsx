@@ -15,6 +15,25 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isUser, setIsUser] = useState<IUser | null>(null);
   const { user } = useUser();
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [dark]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark") {
+      setDark(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
 
   useEffect(() => {
     if (!user?._id) {
@@ -62,11 +81,11 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-white shadow-[0_1px_6px_rgba(0,0,0,0.5)] font-madimi items-center px-3 sm:px-5 h-16 w-full flex justify-between fixed top-0 transition-transform duration-300 z-50 ${
+      className={`bg-white shadow-[0_1px_6px_rgba(0,0,0,0.5)] font-madimi items-center px-3 sm:px-5 h-16 w-full flex justify-between fixed top-0 transition-transform duration-300 z-50 dark:bg-black ${
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-3 items-center dark:bg-black">
         <Sidebar isUser={isUser!} />
         <Link href="/" className="mr-5 font-lobster font-bold text-3xl">
           <span>As</span>
@@ -76,7 +95,7 @@ const Navbar = () => {
           {navOptions.map((option) => (
             <Link
               key={option.name}
-              className="hover:text-primary"
+              className="hover:text-primary text-lg"
               href={option.path}
             >
               {option.name}
@@ -86,6 +105,12 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center sm:gap-5">
+        <button
+          onClick={() => setDark(!dark)}
+          className="p-2 bg-gray-200 dark:bg-gray-800 rounded"
+        >
+          {dark ? "🌙 Dark" : "Light ☀️"}
+        </button>
         {isUser?.profileImage ? (
           <div className="sm:flex hidden gap-2 items-center">
             {isUser.profileImage === "N/A" ? (
