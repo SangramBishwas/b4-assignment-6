@@ -9,6 +9,8 @@ import { IUser } from "@/types";
 import { getMyProfile } from "@/services/users";
 import { useUser } from "@/context/UserContext";
 import Image from "next/image";
+import { ImSun } from "react-icons/im";
+import { RiMoonClearLine } from "react-icons/ri";
 
 const Navbar = () => {
   const [show, setShow] = useState(true);
@@ -105,12 +107,20 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center sm:gap-5">
-        <button
-          onClick={() => setDark(!dark)}
-          className="p-2 bg-gray-200 dark:bg-gray-800 rounded"
-        >
-          {dark ? "🌙 Dark" : "Light ☀️"}
+        <button onClick={() => setDark(!dark)}>
+          <span
+            className={`inline-block transition-all duration-500 ease-in-out transform ${
+              dark ? "rotate-180 scale-100" : "rotate-0 scale-100"
+            }`}
+          >
+            {dark ? (
+              <ImSun className="size-6 cursor-pointer" />
+            ) : (
+              <RiMoonClearLine className="size-6 cursor-pointer" />
+            )}
+          </span>
         </button>
+
         {isUser?.profileImage ? (
           <div className="sm:flex hidden gap-2 items-center">
             {isUser.profileImage === "N/A" ? (
