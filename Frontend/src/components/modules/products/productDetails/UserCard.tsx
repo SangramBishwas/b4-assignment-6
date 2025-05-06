@@ -34,7 +34,7 @@ const UserCard = ({ user, timeAgo }: TUserProps) => {
   // console.log('isUser__', isUser);
 
   return (
-    <div className="w-full flex justify-center flex-col rounded-lg bg-white p-4">
+    <div className="w-full flex justify-center flex-col rounded-lg bg-white dark:bg-gray-800 p-4">
       {/* Avatar */}
       <div className="flex justify-center">
         <Avatar className="w-16 h-16">
@@ -48,13 +48,13 @@ const UserCard = ({ user, timeAgo }: TUserProps) => {
       {/* User Info */}
       <div className="text-center mt-2">
         <h3 className="text-lg font-semibold">{isUser?.name}</h3>
-        <p className="text-sm text-gray-500 flex items-center justify-center gap-1">
-          <MapPin className="text-black w-4 h-4" />{" "}
+        <p className="text-sm text-gray-500 dark:text-white flex items-center justify-center gap-1">
+          <MapPin className="text-black dark:text-white w-4 h-4" />{" "}
           {isUser?.address
             ? `${isUser?.city}, ${isUser?.country}`
             : "Unverified User"}
         </p>
-        <p className="text-xs text-gray-500">Posting for {timeAgo}</p>
+        <p className="text-xs text-gray-500 dark:text-white">Posting for {timeAgo}</p>
       </div>
 
       {/* Online Badge */}
@@ -82,13 +82,13 @@ const UserCard = ({ user, timeAgo }: TUserProps) => {
         <div className="flex justify-between mt-4">
           <Button
             variant="outline"
-            className="w-1/2 mr-1 border border-black text-black"
+            className="w-1/2 mr-1 border border-black text-black dark:text-white"
           >
             View Profile
           </Button>
           <Button
             variant="outline"
-            className="w-1/2 ml-1 border border-black text-black"
+            className="w-1/2 ml-1 border border-black text-black dark:text-white"
           >
             Follow
           </Button>

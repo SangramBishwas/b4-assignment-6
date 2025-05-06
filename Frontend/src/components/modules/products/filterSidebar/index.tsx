@@ -70,7 +70,7 @@ export default function FilterSidebar() {
   return (
     <div className="p-6 border mb-5 border-gray-300 font-madimi rounded-lg">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold text-black">Filter</h2>
+        <h2 className="text-xl font-semibold text-black dark:text-white">Filter</h2>
         {searchParams.toString().length > 0 && (
           <Button
             onClick={() => {
@@ -118,7 +118,7 @@ export default function FilterSidebar() {
             />
             <Label
               htmlFor="new"
-              className="text-gray-500 cursor-pointer font-light"
+              className="text-gray-500 dark:text-white cursor-pointer font-light"
             >
               New
             </Label>
@@ -131,7 +131,7 @@ export default function FilterSidebar() {
             />
             <Label
               htmlFor="used"
-              className="text-gray-500 cursor-pointer font-light"
+              className="text-gray-500 dark:text-white cursor-pointer font-light"
             >
               Used
             </Label>
@@ -144,7 +144,7 @@ export default function FilterSidebar() {
             />
             <Label
               htmlFor="refurbished"
-              className="text-gray-500 cursor-pointer font-light"
+              className="text-gray-500 dark:text-white cursor-pointer font-light"
             >
               Refurbished
             </Label>
@@ -159,7 +159,7 @@ export default function FilterSidebar() {
           <SelectTrigger className=" w-full border-neutral-300">
             <SelectValue placeholder="Select Location" />
           </SelectTrigger>
-          <SelectContent className=" bg-gray-100 border-neutral-300">
+          <SelectContent className=" bg-gray-100 dark:bg-gray-800 border-neutral-300">
             {bdDivisions?.map((place, index) => (
               <div key={index} className="flex items-center space-x-2">
                 <SelectItem key={index} value={place}>
@@ -198,7 +198,7 @@ export default function FilterSidebar() {
                 />
                 <Label
                   htmlFor={category._id}
-                  className="text-gray-500 cursor-pointer font-light"
+                  className="text-gray-500 dark:text-white cursor-pointer font-light"
                 >
                   {category.name}
                 </Label>
