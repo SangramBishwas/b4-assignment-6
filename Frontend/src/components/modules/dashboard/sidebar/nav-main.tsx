@@ -2,9 +2,7 @@
 
 import { type LucideIcon } from "lucide-react";
 import { usePathname } from "next/navigation"; // Import usePathname
-import {
-  Collapsible,
-} from "@/components/ui/collapsible";
+import { Collapsible } from "@/components/ui/collapsible";
 import {
   SidebarGroup,
   SidebarMenu,
@@ -15,6 +13,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { NavUser } from "./nav-user";
 
 export function NavMain({
   items,
@@ -48,9 +47,7 @@ export function NavMain({
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip={item.title}>
                   <Link
-                    className={`text-lg ${
-                      isActive ? "text-black/50" : ""
-                    }`}
+                    className={`text-lg dark:text-white ${isActive ? "text-black/50" : ""}`}
                     href={item.url}
                   >
                     <item.icon />
@@ -59,18 +56,17 @@ export function NavMain({
                 </SidebarMenuButton>
                 {item.items?.length ? (
                   <>
-                    
-                      <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild>
-                              <Link href={subItem.url}>
-                                <span>{subItem.title}</span>
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
+                    <SidebarMenuSub>
+                      {item.items?.map((subItem) => (
+                        <SidebarMenuSubItem key={subItem.title}>
+                          <SidebarMenuSubButton asChild>
+                            <Link href={subItem.url}>
+                              <span>{subItem.title}</span>
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
                   </>
                 ) : null}
               </SidebarMenuItem>
@@ -78,6 +74,10 @@ export function NavMain({
           );
         })}
       </SidebarMenu>
+
+      <div className="py-3">
+        <NavUser />
+      </div>
     </SidebarGroup>
   );
 }

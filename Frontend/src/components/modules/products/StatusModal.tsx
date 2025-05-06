@@ -62,7 +62,7 @@ const StatusModal = ({ id }: { id: string }) => {
           Status
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-white w-[22rem] font-madimi">
+      <DialogContent className="bg-white dark:bg-gray-800 w-[22rem] font-madimi">
         <DialogHeader>
           <DialogTitle>Are you sure change the status?</DialogTitle>
         </DialogHeader>

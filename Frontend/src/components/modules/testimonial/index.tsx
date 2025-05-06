@@ -47,7 +47,7 @@ const TestimonialSection = () => {
                   <div className="p-1">
                     <Card className="w-full max-w-sm p-4 hover:shadow-sm border-none bg-white">
                       <CardContent className="flex flex-col items-start text-start gap-2 mt-5 mb-3">
-                        <span className="lg:text-3xl text-xl font-semibold">
+                        <span className="lg:text-3xl text-xl font-semibold dark:text-black">
                           {testimonial.name}
                         </span>
                         <p className="text-sm text-gray-500">

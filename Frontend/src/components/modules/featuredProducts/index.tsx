@@ -17,7 +17,7 @@ const FeaturedProducts = ({ data }: { data: TLIsting[] }) => {
       <div className="my-4 md:my-10 font-madimi">
         <div>
           <div className="flex items-center justify-between">
-            <h2 className=" text-lg font-semibold">Featured Products</h2>
+            <h2 className="text-lg md:text-xl font-semibold">Featured Products</h2>
             <div></div>
           </div>
           <div className="mt-5">

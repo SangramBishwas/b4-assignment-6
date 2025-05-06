@@ -8,9 +8,9 @@ import { ChevronsRight } from "lucide-react";
 const OurPromises = () => {
   return (
     <>
-      <div className="mt-4 md:mt-10 font-madimi py-20">
+      <div className="mt-4 md:mt-10 font-madimi py-10">
         <div>
-          <h2 className=" text-lg font-semibold">Our Promises</h2>
+          <h2 className="text-lg font-semibold">Our Promises</h2>
           <div className="mt-5 grid grid-cols-1 lg:grid-cols-3 gap-5">
             <div className=" flex items-center gap-4">
               <Image src={pro} alt="" height={400} width={400} />
@@ -22,7 +22,7 @@ const OurPromises = () => {
                   If it&apos;s not what you ordered, we guarantee to give your
                   money back.
                 </p>
-                <Button className=" flex items-center text-sm shadow-none border-none m-0 p-0 text-white">
+                <Button className=" flex items-center text-sm shadow-none border-none m-0 p-0 text-white dark:text-black">
                   Learn More <ChevronsRight className=" size-4 mt-1" />
                 </Button>
               </div>
@@ -37,7 +37,7 @@ const OurPromises = () => {
                   We offer free item authentication and free shipping on all
                   items $500 or more.
                 </p>
-                <Button className=" flex items-center text-sm shadow-none border-none m-0 p-0 text-white">
+                <Button className=" flex items-center text-sm shadow-none border-none m-0 p-0 text-white dark:text-black">
                   Learn More <ChevronsRight className=" size-4 mt-1" />
                 </Button>
               </div>
@@ -52,7 +52,7 @@ const OurPromises = () => {
                   All orders ship via USPS Priority Mail. With our prepaid
                   labels, shipping has never been easier!
                 </p>
-                <Button className=" flex items-center text-sm shadow-none border-none m-0 p-0 text-white">
+                <Button className=" flex items-center text-sm shadow-none border-none m-0 p-0 text-white dark:text-black">
                   Learn More <ChevronsRight className=" size-4 mt-1" />
                 </Button>
               </div>
