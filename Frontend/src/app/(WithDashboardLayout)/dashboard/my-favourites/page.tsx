@@ -21,7 +21,7 @@ const WishlistProductPage = async () => {
       ) : (
         <div className="mt-5 flex flex-wrap gap-4">
           {wishlistsArray.map((product: TWishlistProduct) => (
-            <WishlistProducts key={Math.random()} wishlistItem={product} />
+            <WishlistProducts key={product._id} wishlistItem={product} />
           ))}
         </div>
       )}
