@@ -106,20 +106,19 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="flex items-center sm:gap-5">
-        <button onClick={() => setDark(!dark)}>
-          <span
-            className={`inline-block transition-all duration-500 ease-in-out transform ${
-              dark ? "rotate-180 scale-100" : "rotate-0 scale-100"
-            }`}
-          >
-            {dark ? (
-              <ImSun className="size-6 cursor-pointer" />
-            ) : (
-              <RiMoonClearLine className="size-6 cursor-pointer" />
-            )}
-          </span>
-        </button>
+      <div className="flex items-center sm:gap-5 gap-1">
+        <span
+          onClick={() => setDark(!dark)}
+          className={`inline-block transition-all duration-500 ease-in-out transform ${
+            dark ? "rotate-180 scale-100" : "rotate-0 scale-100"
+          }`}
+        >
+          {dark ? (
+            <ImSun className="size-6 cursor-pointer" />
+          ) : (
+            <RiMoonClearLine className="size-6 cursor-pointer" />
+          )}
+        </span>
 
         {isUser?.profileImage ? (
           <div className="sm:flex hidden gap-2 items-center">
