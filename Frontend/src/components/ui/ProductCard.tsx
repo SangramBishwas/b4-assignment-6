@@ -34,7 +34,7 @@ const ProductCard = ({ product }: { product: TLIsting }) => {
 
   return (
     <Card className="relative w-full font-madimi py-0 mx-auto border border-gray-300 rounded-lg overflow-hidden">
-      <CardContent className="flex flex-col md:flex-row gap-5 p-4">
+      <CardContent className="flex flex-col md:flex-row gap-5 p-4 dark:bg-gray-800">
         {/* Product Image */}
         <div className="w-full md:w-1/3 flex justify-center items-center">
           <Link
@@ -56,7 +56,7 @@ const ProductCard = ({ product }: { product: TLIsting }) => {
           <div className="space-y-2">
             <div className="flex items-start justify-between">
               <Link href={`/product/${product._id}`} className="flex-1">
-                <h2 className="text-lg md:text-xl font-semibold text-black break-words">
+                <h2 className="text-lg md:text-xl font-semibold text-black dark:text-white break-words">
                   {product.title.length > 40
                     ? product.title.slice(0, 40) + "..."
                     : product.title}
@@ -70,7 +70,7 @@ const ProductCard = ({ product }: { product: TLIsting }) => {
               </Button>
             </div>
 
-            <p className="text-gray-600 text-sm md:text-base line-clamp-3">
+            <p className="text-gray-600 dark:text-white text-sm md:text-base line-clamp-3">
               {product.description}
             </p>
             <p className="text-lg font-bold text-primary">
@@ -79,7 +79,7 @@ const ProductCard = ({ product }: { product: TLIsting }) => {
           </div>
 
           {/* Time Section */}
-          <div className="mt-3 md:mt-4 flex justify-end items-center text-sm text-gray-600">
+          <div className="mt-3 md:mt-4 flex justify-end items-center text-sm text-gray-600 dark:text-white">
             <div className="flex items-center gap-1">
               <Clock4 size={18} />
               <span>{timeAgo}</span>

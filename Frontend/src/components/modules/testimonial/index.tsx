@@ -45,12 +45,12 @@ const TestimonialSection = () => {
                   className=" md:basis-1/1 lg:basis-1/3"
                 >
                   <div className="p-1">
-                    <Card className="w-full max-w-sm p-4 hover:shadow-sm border-none bg-white">
+                    <Card className="w-full max-w-sm p-4 hover:shadow-sm border-none bg-white dark:bg-gray-800">
                       <CardContent className="flex flex-col items-start text-start gap-2 mt-5 mb-3">
-                        <span className="lg:text-3xl text-xl font-semibold dark:text-black">
+                        <span className="lg:text-3xl text-xl font-semibold text-black dark:text-white">
                           {testimonial.name}
                         </span>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-gray-500 dark:text-white">
                           {testimonial.location}
                         </p>
                         <div className="flex gap-1 text-yellow-500">
@@ -65,7 +65,7 @@ const TestimonialSection = () => {
                             )
                           )}
                         </div>
-                        <p className="text-gray-700">
+                        <p className="text-gray-700 dark:text-white">
                           &quot;{testimonial.comment}&quot;
                         </p>
                       </CardContent>

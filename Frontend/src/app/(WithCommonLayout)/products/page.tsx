@@ -54,7 +54,7 @@ const ProductsPage = async ({ searchParams }: TListingProps) => {
                     <ProductCard key={product._id} product={product} />
                   ))
               ) : (
-                <p className="font-medium font-madimi text-black text-center col-span-full">
+                <p className="font-medium font-madimi text-black dark:text-white text-center col-span-full">
                   No Product Available!
                 </p>
               )
@@ -62,7 +62,7 @@ const ProductsPage = async ({ searchParams }: TListingProps) => {
               Array.from({ length: 6 }).map((_, index) => (
                 <Skeleton
                   key={index}
-                  className="h-60 w-full rounded-lg bg-gray-300"
+                  className="h-60 w-full rounded-lg bg-gray-300 dark:bg-gray-800"
                 />
               ))
             )}

@@ -54,7 +54,7 @@ const SimilarProducts = ({
           </div>
         </div>
       ) : (
-        <p className="text-center font-madimi text-gray-500">
+        <p className="text-center font-madimi text-gray-500 dark:text-white">
           No similar products found.
         </p>
       )}
