@@ -25,7 +25,7 @@ const ManageListings = ({ data }: TListingsProps) => {
     return (
       <>
         <div className="flex flex-col items-center justify-center h-screen text-center space-y-3">
-          <p className="text-lg font-madimi font-semibold text-gray-600">
+          <p className="text-lg font-madimi font-semibold dark:text-white text-gray-600">
             No available products!
           </p>
           <Link href="/dashboard/add-product">
@@ -69,7 +69,7 @@ const ManageListings = ({ data }: TListingsProps) => {
                 "bg-black hover:bg-black/80 hover:cursor-pointer text-white font-medium px-6 py-2 rounded-lg"
               )}
             >
-              Cretae Product <Plus />
+              Create Product <Plus />
             </Button>
           </Link>
         </div>
@@ -92,7 +92,7 @@ const ManageListings = ({ data }: TListingsProps) => {
             ) => (
               <div
                 key={`${_id}-${idx}`}
-                className="bg-white border font-madimi border-neutral-300 p-4 md:p-5 rounded-2xl flex flex-col-reverse md:flex-row gap-6 md:gap-8 justify-between"
+                className="bg-white dark:bg-gray-800 border font-madimi border-neutral-300 p-4 md:p-5 rounded-2xl flex flex-col-reverse md:flex-row gap-6 md:gap-8 justify-between"
               >
                 <div className="flex-1">
                   <div className="space-y-2">

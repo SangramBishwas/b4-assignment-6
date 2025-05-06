@@ -18,10 +18,13 @@ const WishlistProducts = ({
 }) => {
   const { product } = wishlistItem;
 
-  const timeAgo = formatDistanceToNow(new Date(product.createdAt), {
-    addSuffix: true,
-  });
+  let timeAgo = "Unknown";
 
+  if (product?.createdAt) {
+    timeAgo = formatDistanceToNow(new Date(product.createdAt), {
+      addSuffix: true,
+    });
+  }
   const handleDeleteWishlist = async (id: string) => {
     try {
       const res = await deleteWishlist(id);
@@ -37,12 +40,12 @@ const WishlistProducts = ({
 
   return (
     <>
-      <Card className="w-[20rem] py-0 bg-white border-neutral-300 rounded-lg overflow-hidden">
+      <Card className="w-[20rem] py-0 bg-white dark:bg-gray-800 border-neutral-300 rounded-lg overflow-hidden">
         <CardHeader className="p-4">
           <div className="relative w-full h-40">
             <Image
-              src={product.images[0]}
-              alt={product.title}
+              src={product?.images[0]}
+              alt={product?.title}
               layout="fill"
               objectFit="cover"
               className="rounded-lg"
@@ -50,16 +53,16 @@ const WishlistProducts = ({
           </div>
         </CardHeader>
         <CardContent className="p-4 space-y-3">
-          <CardTitle className="text-lg font-semibold text-gray-900">
-            {product.title}
+          <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
+            {product?.title}
           </CardTitle>
-          <p className="text-gray-600 text-sm line-clamp-2">
-            {product.description}
+          <p className="text-gray-600 dark:text-white text-sm line-clamp-2">
+            {product?.description}
           </p>
-          <div className="flex justify-between items-center text-sm text-gray-700">
+          <div className="flex justify-between items-center text-sm text-gray-700 dark:text-white">
             <div className="flex items-center gap-2">
               <Tag size={18} className="text-primary" />
-              <span>{product.condition}</span>
+              <span>{product?.condition}</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock size={18} className="text-gray-500" />
@@ -68,11 +71,11 @@ const WishlistProducts = ({
           </div>
           <div className="flex justify-between items-center mt-3">
             <span className="text-lg font-bold text-primary">
-              {currencyFormatter(product.price)}
+              {currencyFormatter(product?.price)}
             </span>
             <Button
               size={"sm"}
-              onClick={() => handleDeleteWishlist(product._id!)}
+              onClick={() => handleDeleteWishlist(product._id as string)}
               className="flex items-center gap-2 bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white border-none"
             >
               <Trash2 /> Remove

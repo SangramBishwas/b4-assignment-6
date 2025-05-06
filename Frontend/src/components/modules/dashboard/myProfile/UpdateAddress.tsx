@@ -152,7 +152,7 @@ const UpdateAddressForm = () => {
 
   return (
     <>
-      <div className="font-madimi">
+      <div className="font-madimi ">
         <div>
           <h2 className="text-3xl font-semibold">Update Your Profile</h2>
         </div>
@@ -166,7 +166,7 @@ const UpdateAddressForm = () => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="mt-5 border-2 border-gray-200 font-madimi bg-white rounded-xl flex-grow p-5 sm:p-10">
+          <div className="mt-5 border-2 border-gray-200 font-madimi bg-white dark:bg-gray-800 rounded-xl flex-grow p-5 sm:p-10">
             <div className="grid grid-cols-1 gap-4">
               <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
                 <div className="flex flex-col gap-4">
