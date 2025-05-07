@@ -38,9 +38,7 @@ const AddProductForm = () => {
   const [categories, setCategories] = useState<TCategory[] | []>([]);
   const [isUser, setIsUser] = useState<IUser | null>(null);
   const { user } = useUser();
-
   const router = useRouter();
-
   const form = useForm();
 
   const {

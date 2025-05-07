@@ -4,8 +4,15 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { getCurrentUser } from "@/services/auth";
+import { redirect } from "next/navigation";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    redirect("/login");
+  }
   return (
     <>
       <SidebarProvider>

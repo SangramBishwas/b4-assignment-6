@@ -33,7 +33,9 @@ const ProductDetails = ({ product }: { product: TLIsting }) => {
               </p>
             </div>
 
-            <p className="text-gray-700 dark:text-white">{product?.description}</p>
+            <p className="text-gray-700 dark:text-white">
+              {product?.description}
+            </p>
 
             {/* Posted and Product ID */}
             <div className="flex flex-col lg:flex-row md:justify-between items-start lg:items-center border-y border-neutral-300 py-4 gap-4">
@@ -47,7 +49,9 @@ const ProductDetails = ({ product }: { product: TLIsting }) => {
 
               <div className="flex flex-wrap items-center gap-2">
                 <p className="text-lg font-semibold">Product ID:</p>
-                <p className="text-gray-600 dark:text-white">{product?._id?.slice(0, 11)}</p>
+                <p className="text-gray-600 dark:text-white">
+                  {product?._id?.slice(0, 11)}
+                </p>
               </div>
             </div>
 
@@ -75,7 +79,7 @@ const ProductDetails = ({ product }: { product: TLIsting }) => {
       </div>
 
       <section className="my-10 grid grid-cols-1 md:grid-cols-7 gap-7">
-        <div className="col-span-1 md:col-span-5 bg-white dark:bg-gray-800 rounded-lg py-6 md:py-8">
+        <div className="col-span-1 md:col-span-5 rounded-lg py-6 md:py-8">
           <SimilarProducts
             product={product?._id}
             category={product?.categories._id}

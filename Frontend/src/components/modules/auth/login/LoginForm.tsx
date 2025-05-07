@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Input from "@/components/ui/AMInput";
+import { Button } from "@/components/ui/button";
 import { useUser } from "@/context/UserContext";
 import { loginUser } from "@/services/auth";
 import Link from "next/link";
@@ -38,11 +39,37 @@ const LoginForm = () => {
       toast.error(error?.message, { id: tostId });
     }
   };
+
+  const handleAdminLogin = async () => {
+    const tostId = toast.loading("Logging in...");
+    const data = {
+      email: "admin@gmail.com",
+      password: "123456",
+    };
+    try {
+      const res = await loginUser(data);
+      if (res?.success) {
+        await fetchUser();
+        toast.success("Admin logged in successfully", { id: tostId });
+        router.push("/dashboard/my-account");
+      } else {
+        toast.error(res?.message, { id: tostId });
+      }
+    } catch (error: any) {
+      console.error("login form error", error);
+      toast.error(error?.message, { id: tostId });
+    }
+  };
   return (
     <div className="w-full md:w-1/2 p-5 md:p-10 bg-white">
-      <h2 className="text-3xl font-bold font-lobster text-black mb-10 sm:mb-16">
-        Login
-      </h2>
+      <div className="flex justify-between">
+        <h2 className="text-3xl font-bold font-lobster text-black mb-10 sm:mb-16">
+          Login
+        </h2>
+        <Button onClick={handleAdminLogin} size={"sm"}>
+          Admin Login
+        </Button>
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <Input
