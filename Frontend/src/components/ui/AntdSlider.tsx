@@ -9,7 +9,7 @@ const Slider: React.FC = () => {
       {images.map((image, i) => (
         <div key={i} className="mt-[65px] w-full relative">
           <div
-            className={`w-full h-[582px] brightness-70  `}
+            className={`w-full h-[555px] brightness-70  `}
             style={{
               color: "#fff",
               backgroundImage: `url(${image.img})`,

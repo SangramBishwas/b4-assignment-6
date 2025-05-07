@@ -7,15 +7,15 @@ const MyAddress = ({ isUser }: { isUser: IUser | null }) => {
   return (
     <>
       <div className="font-madimi">
-        <Card className="w-full border-none shadow-none p-0 m-0">
+        <Card className="w-full border-none shadow-none p-0 m-0 dark:bg-gray-800 ">
           <CardHeader className="border-b pb-5">
-            <CardTitle className="text-lg font-semibold text-gray-800 flex justify-between">
+            <CardTitle className="text-lg font-semibold text-gray-800 flex justify-between dark:text-white">
               Information
               <Link href="/dashboard/my-account/update">
                 <Button
                   size={"sm"}
                   variant="outline"
-                  className="border-black hover:cursor-pointer text-black"
+                  className="border-black hover:cursor-pointer text-black dark:text-white"
                 >
                   Update
                 </Button>

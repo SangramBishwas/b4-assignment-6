@@ -104,7 +104,7 @@ const UpdateListingForm = ({ product }: { product: TLIsting }) => {
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="mt-5 font-madimi border-2 mb-6 bg-white border-gray-200 rounded-xl flex-grow p-6">
+          <div className="mt-5 font-madimi border-2 mb-6 bg-white dark:bg-gray-800 border-gray-200 rounded-xl flex-grow p-6">
             <div className="grid grid-cols-1 gap-4">
               <FormField
                 control={form.control}

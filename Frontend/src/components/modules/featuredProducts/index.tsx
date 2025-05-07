@@ -17,7 +17,7 @@ const FeaturedProducts = ({ data }: { data: TLIsting[] }) => {
       <div className="my-4 md:my-10 font-madimi">
         <div>
           <div className="flex items-center justify-between">
-            <h2 className=" text-lg font-semibold">Featured Products</h2>
+            <h2 className="text-lg md:text-xl font-semibold">Featured Products</h2>
             <div></div>
           </div>
           <div className="mt-5">
@@ -37,7 +37,7 @@ const FeaturedProducts = ({ data }: { data: TLIsting[] }) => {
                     >
                       <div className="p-2">
                         <Link href={`/product/${product._id}`}>
-                          <Card className="bg-white group border-neutral-200 rounded-2xl shadow-none">
+                          <Card className="bg-white dark:dark:bg-gray-800 group border-neutral-200 rounded-2xl shadow-none">
                             <CardContent className="flex flex-col items-center  ">
                               <div className="relative overflow-hidden w-full h-[8rem]">
                                 <Image
@@ -54,7 +54,7 @@ const FeaturedProducts = ({ data }: { data: TLIsting[] }) => {
                                   ? product.title.slice(0, 15) + "..."
                                   : product.title}
                               </h2>
-                              <p className=" group-hover:text-black group-hover:font-bold">
+                              <p className="dark:text-black dark:group-hover:text-white group-hover:text-black group-hover:font-bold">
                                 {currencyFormatter(product.price)}
                               </p>
                             </CardContent>

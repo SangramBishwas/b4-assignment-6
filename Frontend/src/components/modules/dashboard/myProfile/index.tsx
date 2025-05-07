@@ -73,7 +73,7 @@ const MyAccount = () => {
 
   return (
     <>
-      <section className="bg-white p-4 md:p-6 rounded-2xl border font-madimi border-neutral-200">
+      <section className="bg-white p-4 md:p-6 rounded-2xl border font-madimi border-neutral-200 dark:bg-gray-800">
         <div className="flex justify-between items-start sm:items-center gap-5">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
             <div className="bg-gray-100 flex items-center justify-center rounded-full w-20 h-20">
@@ -93,10 +93,10 @@ const MyAccount = () => {
               )}
             </div>
             <div>
-              <h2 className="text-xl md:text-2xl font-semibold text-black">
+              <h2 className="text-xl md:text-2xl font-semibold text-black dark:text-white">
                 {isUser?.name ?? "Name"}
               </h2>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-gray-600 mt-1 dark:text-white">
                 {isUser?.email ?? "example@gmail.com"}
               </p>
             </div>
@@ -125,13 +125,13 @@ const MyAccount = () => {
 
         <div className="flex items-start sm:items-center gap-3 flex-col sm:flex-row">
           <VscGraph className="text-black size-6" />
-          <h3 className="text-md font-2nd text-gray-700">
+          <h3 className="text-md font-2nd text-gray-700 dark:text-white">
             Progress your account by completing your profile
           </h3>
         </div>
       </section>
 
-      <section className="mt-8 bg-white p-4 md:p-6 rounded-2xl border border-neutral-200">
+      <section className="mt-8 bg-white p-4 md:p-6 rounded-2xl border border-neutral-200 dark:bg-gray-800">
         <MyAddress isUser={isUser} />
       </section>
     </>
