@@ -48,7 +48,6 @@ const AddProductForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       const [categoriesData] = await Promise.all([getAllCategories()]);
-      console.log("🚀 ~ fetchData ~ categoriesData:", categoriesData);
 
       setCategories(categoriesData?.data);
     };
