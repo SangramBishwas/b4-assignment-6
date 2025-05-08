@@ -87,7 +87,7 @@ const updateStatus = catchAsync(async (req, res) => {
   const result = await ListingServices.changeListingStatus(id, status);
 
   sendResponse(res, {
-    statusCode: status.OK,
+    statusCode: 200,
     success: true,
     message: 'Listing status updated successfully',
     data: result,

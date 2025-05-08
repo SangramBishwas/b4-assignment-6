@@ -1,4 +1,4 @@
-import AddProductForm from "@/components/modules/listings/AddProductForm";
+import AddProductForm from "@/components/modules/products/AddProductForm";
 
 const PostAdPage = () => {
   return (
@@ -8,7 +8,7 @@ const PostAdPage = () => {
           <h2 className=" text-3xl font-semibold">Add Product</h2>
         </div>
         <div className=" w-full border-b border-neutral-300 py-4" />
-        <AddProductForm/>
+        <AddProductForm />
       </section>
     </>
   );

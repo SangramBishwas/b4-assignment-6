@@ -1,11 +1,3 @@
-export interface IAddress {
-    street: string;
-    city: string;
-    state: string;
-    postalCode: string;
-    country: string;
-}
-
 export interface IUser {
     _id: string;
     name: string;
@@ -14,8 +6,14 @@ export interface IUser {
     role: "user" | "admin";
     iat?: number;
     exp?: number;
+
     profileImage?: string;
-    address?: IAddress;
+    address?: string;
+    street?: string;
+    city?: string;
+    state?: string;
+    postalCode?: string;
+    country?: string;
     phoneNo?: string;
     gender?: string;
     dateOfBirth?: string;

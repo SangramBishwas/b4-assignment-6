@@ -4,23 +4,17 @@ import { Carousel } from "antd";
 import { images } from "@/utils/sliderUtils";
 
 const Slider: React.FC = () => {
-  const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
-  };
-
   return (
-    <Carousel
-      autoplay={{ dotDuration: true }}
-      autoplaySpeed={5000}
-      afterChange={onChange}
-    >
+    <Carousel autoplay={{ dotDuration: true }} autoplaySpeed={5000}>
       {images.map((image, i) => (
         <div key={i} className="mt-[65px] w-full relative">
           <div
-            className={`w-full h-[582px] brightness-70  `}
+            className={`w-full h-[555px] brightness-70  `}
             style={{
               color: "#fff",
               backgroundImage: `url(${image.img})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           />
         </div>

@@ -102,7 +102,6 @@ const registerUser = async (userData: IUser) => {
     return await loginUser({
       email: createdUser.email,
       password: userData.password,
-      userInfo: userData.userInfo,
     });
   } catch (error) {
     console.log(error);

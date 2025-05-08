@@ -1,9 +1,9 @@
 "use client";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Button } from "../../button";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Button } from "./button";
 
 const AMPagination = ({ totalPage }: { totalPage: number }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,13 +26,13 @@ const AMPagination = ({ totalPage }: { totalPage: number }) => {
   };
 
   return (
-    <div className="flex items-center gap-2 my-5">
+    <div className="flex items-center gap-2 font-madimi my-5">
       <Button
         onClick={handlePrev}
         disabled={currentPage === 1}
         variant="outline"
         size="sm"
-        className="w-8 h-8 rounded-full flex items-center justify-center border-[#1575B9]"
+        className="w-8 h-8 rounded-sm flex items-center justify-center border-black"
       >
         <ArrowLeft />
       </Button>
@@ -45,7 +45,7 @@ const AMPagination = ({ totalPage }: { totalPage: number }) => {
           key={index}
           variant={currentPage === index + 1 ? "default" : "outline"}
           size="sm"
-          className="w-8 h-8 rounded-full flex items-center justify-center border-[#1575B9]"
+          className="w-8 h-8 rounded-sm flex items-center justify-center border-black"
         >
           {index + 1}
         </Button>
@@ -55,7 +55,7 @@ const AMPagination = ({ totalPage }: { totalPage: number }) => {
         disabled={currentPage === totalPage}
         variant="outline"
         size="sm"
-        className="w-8 h-8 rounded-full flex items-center justify-center border-[#1575B9]"
+        className="w-8 h-8 rounded-sm flex items-center justify-center border-black"
       >
         <ArrowRight />
       </Button>

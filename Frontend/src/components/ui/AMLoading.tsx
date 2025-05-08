@@ -1,11 +1,17 @@
-import { LoaderCircle } from "lucide-react";
-
-const PBLoading = () => {
+import Image from "next/image";
+import circle from "../../assets/Spinner.svg";
+const LottieControl = () => {
   return (
-    <div className="text-center mt-10 text-[#1575B9] font-medium text-lg h-screen flex justify-center items-center">
-      <LoaderCircle className="animate-spin w-8 h-8" />
+    <div className="flex flex-col h-[60vh] items-center justify-center">
+      <Image
+        src={circle}
+        className="animate-spin"
+        alt="loader"
+        width={100}
+        height={100}
+      />
     </div>
   );
 };
 
-export default PBLoading;
+export default LottieControl;

@@ -1,12 +1,12 @@
-import ManageListings from "@/components/modules/listings";
+import ManageListings from "@/components/modules/products";
+import { getAllProducts } from "@/services/products";
 
 const UserDashboardPage = async () => {
-
-  // console.log('allListings', allListings);
+  const { data } = await getAllProducts();
 
   return (
     <>
-        <ManageListings  />
+      <ManageListings data={data} />
     </>
   );
 };

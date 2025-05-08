@@ -1,87 +1,125 @@
-# Stationery Shop
+# 🛒 [AS Mart Backend](https://as-mart-backend.vercel.app/)
 
-Welcome to the **Stationery Shop** project! This is an e-commerce web application designed to showcase and sell stationery products. The project is built using modern web technologies and is deployed on Vercel.
-
-## Demo
-
-Visit the live site: [Stationery Shop](https://stationery-shop-a-02.vercel.app/)
+AS Mart is the backend system for a SecondHand Marketplace web application that allows users to buy and sell used items securely. This repository contains the Express.js RESTful API built with TypeScript and MongoDB.
 
 ---
 
-## Features
+## 🚀 Features
 
-- 🛒 **Product Listing**: Browse through a variety of stationery items.
-- 🔍 **Search Functionality**: Quickly find the products you need.
-- 💳 **Add to Cart**: Seamlessly add products to the shopping cart.
-- 📱 **Responsive Design**: Optimized for both desktop and mobile devices.
-
----
-
-## Technologies Used
-
-- **Frontend**: React.js, Tailwind CSS
-- **Backend**: (Specify if any backend or API is used)
-- **Deployment**: Vercel
+* ✅ User registration and authentication (JWT)
+* 🔐 Password hashing with bcrypt
+* 🛍️ CRUD operations for product listings
+* 👥 Role-based access (Admin/User)
+* 📂 Modular and scalable codebase
 
 ---
 
-## Getting Started
+## 🧩 Project Structure
 
-### Prerequisites
-
-- Node.js (v16 or later)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/stationery-shop.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd stationery-shop
-   ```
-
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-5. Open the application in your browser:
-   ```
-   http://localhost:3000
-   ```
-
----
-
-## Folder Structure
-
-```plaintext
-stationery-shop/
-├── public/          # Static assets (images, icons, etc.)
-├── src/
-│   ├── components/  # Reusable UI components
-│   ├── pages/       # Next.js pages
-│   ├── styles/      # Global and module-specific styles
-│   ├── utils/       # Helper functions
-├── package.json     # Project metadata and dependencies
-└── README.md        # Project documentation
+```bash
+/src
+├── app/             # Core application logic (controllers, services)
+├── builder/         # Custom response builders
+├── config/          # Configuration files (env, db)
+├── errors/          # Custom error classes and handling
+├── interface/       # TypeScript interfaces for types and models
+├── middleware/      # Express middlewares (auth, errorHandler, etc.)
+├── module/          # Domain logic organized into modules (user, listing, etc.)
+├── routes/          # API route definitions
+├── utils/           # Utility functions (e.g., token generation)
+├── app.ts           # Express app setup
+└── server.ts        # Entry point – starts the server
 ```
 
 ---
 
-## Scripts
+## ⚙️ Tech Stack
 
-- `npm run dev`: Start the development server.
-- `npm run build`: Build the application for production.
-- `npm start`: Start the production server.
-- `npm run lint`: Run linting checks.
+* **Node.js** with **Express.js**
+* **TypeScript**
+* **MongoDB** with **Mongoose**
+* **JWT** (JSON Web Token) for authentication
+* **bcrypt** for password hashing
+* **Zod** for schema validation
 
 ---
+
+## 📦 Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/SangramBishwas/b4-assignment-6/tree/Shuvo/Backend
+cd Backend
+
+# Install dependencies
+npm i
+
+# Add environment variables
+.env
+# Fill in your MongoDB URI, JWT secret, etc.
+
+# Start the server
+npm run dev
+```
+
+---
+
+## 🔐 API Authentication
+
+All protected routes require a valid JWT token in the `Authorization` header:
+
+```
+Authorization: token_here
+```
+
+---
+
+## 📬 Available API Routes
+
+### 🔐 Auth Routes
+
+* `POST /auth/register` – Register a new user
+* `POST /auth/login` – Log in a user
+* `POST /auth/logout` – Log out the current user
+* `POST /auth/refresh-token` – Refresh JWT token
+
+---
+
+### 🏷️ Category Routes
+
+* `GET /categories` – Get all categories
+* `POST /categories` – Create a new category (Authenticated, `User`)
+* `DELETE /categories/:id` – Delete a category (Authenticated, `User`)
+
+---
+
+### 📦 Listing Routes
+
+* `GET /listings` – Get all listings
+* `GET /listings/:id` – Get a single listing by ID
+* `POST /listings` – Create a listing (Authenticated, `User`)
+* `PUT /listings/:id` – Update a listing (Authenticated, `User`)
+* `PATCH /listings/:id/status` – Update listing status (Authenticated, `User`)
+* `DELETE /listings/:id` – Delete a listing
+
+---
+
+### 👤 User Routes
+
+* `GET /users/:id` – Get the profile of a user (Authenticated, `User`)
+* `PUT /users/:id` – Update user profile (Authenticated, `User`)
+* `DELETE /users/:id` – Delete user account (Authenticated, `User`)
+
+---
+
+### 💖 Wishlist Routes
+
+* `POST /wishlist` – Add item to wishlist (Authenticated, `User`)
+* `GET /wishlist` – Get current user's wishlist (Authenticated, `User`)
+* `DELETE /wishlist/:id` – Remove item from wishlist (Authenticated, `User`)
+
+---
+
+## 📂 Deployment
+
+Deployed on platforms like **Vercel**, **Railway**, or **Render**. Make sure your `.env` is configured properly before deploying.

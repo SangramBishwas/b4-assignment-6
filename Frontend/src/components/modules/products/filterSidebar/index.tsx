@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-// import { getAllCategories } from "@/services/category";
 import { Slider } from "@/components/ui/slider";
 import styles from "./filterSidebar.module.css";
 import {
@@ -18,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getAllCategories } from "@/services/category";
 
 export const bdDivisions = [
   "Barisal",
@@ -35,24 +35,24 @@ export default function FilterSidebar() {
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       setIsLoading(true);
-    //   try {
-    //     const [{ data: categoriesData }] = await Promise.all([
-    //       getAllCategories(),
-    //     ]);
-    //     setCategories(categoriesData);
-    //   } catch (error: any) {
-    //     console.error(error);
-    //     toast.error("Failed to fetch filters");
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const [{ data: categoriesData }] = await Promise.all([
+          getAllCategories(),
+        ]);
+        setCategories(categoriesData);
+      } catch (error: any) {
+        console.error(error);
+        toast.error("Failed to fetch filters");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-//     fetchData();
-//   }, []);
+    fetchData();
+  }, []);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -60,7 +60,6 @@ export default function FilterSidebar() {
 
   const handleSearchQuery = (query: string, value: string | number) => {
     const params = new URLSearchParams(searchParams.toString());
-    // console.log("params", params);
 
     params.set(query, value.toString());
     router.push(`${pathname}?${params.toString()}`, {
@@ -69,9 +68,9 @@ export default function FilterSidebar() {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg">
+    <div className="p-6 border mb-5 border-gray-300 font-madimi rounded-lg">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold text-[#1575B9]">Filter</h2>
+        <h2 className="text-xl font-semibold text-black dark:text-white">Filter</h2>
         {searchParams.toString().length > 0 && (
           <Button
             onClick={() => {
@@ -80,7 +79,7 @@ export default function FilterSidebar() {
               });
             }}
             size="sm"
-            className="text-white hover:cursor-pointer bg-[#1575B9] hover:bg-[#1575B9] ml-5"
+            className="text-white hover:cursor-pointer bg-black hover:bg-black ml-5"
           >
             Clear Filters
           </Button>
@@ -92,16 +91,16 @@ export default function FilterSidebar() {
         <h2 className="text-lg font-semibold mb-4">Price</h2>
         <div className="flex items-center justify-between text-sm mb-2">
           <span>TK 0</span>
-          <span>TK 100000</span>
+          <span>TK 2000</span>
         </div>
         <Slider
-          max={100000}
+          max={2000}
           step={1}
           onValueChange={(value) => {
             setPrice(value);
             handleSearchQuery("price", value[0]);
           }}
-          className={`w-full bg-[#1575B9] h-2 rounded-full ${styles.customSlider}`}
+          className={`w-full bg-black h-2 rounded-full ${styles.customSlider}`}
         />
 
         <p className="text-sm mt-2">Selected Price: Tk {price[0]}</p>
@@ -117,7 +116,12 @@ export default function FilterSidebar() {
               value="new"
               id="new"
             />
-            <Label className="text-gray-500 font-light">New</Label>
+            <Label
+              htmlFor="new"
+              className="text-gray-500 dark:text-white cursor-pointer font-light"
+            >
+              New
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
@@ -125,7 +129,12 @@ export default function FilterSidebar() {
               value="used"
               id="used"
             />
-            <Label className="text-gray-500 font-light">Used</Label>
+            <Label
+              htmlFor="used"
+              className="text-gray-500 dark:text-white cursor-pointer font-light"
+            >
+              Used
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
@@ -133,7 +142,12 @@ export default function FilterSidebar() {
               value="refurbished"
               id="refurbished"
             />
-            <Label className="text-gray-500 font-light">Refurbished</Label>
+            <Label
+              htmlFor="refurbished"
+              className="text-gray-500 dark:text-white cursor-pointer font-light"
+            >
+              Refurbished
+            </Label>
           </div>
         </RadioGroup>
       </div>
@@ -145,7 +159,7 @@ export default function FilterSidebar() {
           <SelectTrigger className=" w-full border-neutral-300">
             <SelectValue placeholder="Select Location" />
           </SelectTrigger>
-          <SelectContent className=" bg-gray-100 border-neutral-300">
+          <SelectContent className=" bg-gray-100 dark:bg-gray-800 border-neutral-300">
             {bdDivisions?.map((place, index) => (
               <div key={index} className="flex items-center space-x-2">
                 <SelectItem key={index} value={place}>
@@ -184,7 +198,7 @@ export default function FilterSidebar() {
                 />
                 <Label
                   htmlFor={category._id}
-                  className="text-gray-500 font-light"
+                  className="text-gray-500 dark:text-white cursor-pointer font-light"
                 >
                   {category.name}
                 </Label>

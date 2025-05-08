@@ -7,7 +7,6 @@ import bcrypt from 'bcrypt';
 import status from 'http-status';
 
 
-// Create the User schema based on the interface
 const userSchema = new Schema<IUser, UserModel>(
   {
     name: {
@@ -34,11 +33,16 @@ const userSchema = new Schema<IUser, UserModel>(
       default: true,
     },
 
-    profileImage: { type: String, required: false },
-    phoneNo: { type: String, required: false },
-    gender: { type: String, required: false },
-    dateOfBirth: { type: String, required: false },
-    address: { type: String, required: false },
+    profileImage: { type: String, default: "N/A" },
+    street: { type: String, default: "N/A" },
+    city: { type: String, default: "N/A" },
+    state: { type: String, default: "N/A" },
+    postalCode: { type: String, default: "N/A" },
+    country: { type: String, default: "N/A" },
+    phoneNo: { type: String, default: "N/A" },
+    gender: { type: String, default: "N/A" },
+    dateOfBirth: { type: String },
+    address: { type: String, default: "N/A" },
   },
   {
     timestamps: true,

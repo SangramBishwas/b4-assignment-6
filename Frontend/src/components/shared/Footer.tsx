@@ -72,7 +72,9 @@ const Footer = () => {
       <div className="grid md:grid-cols-4 gap-8 border-b-2 border-white/20 pb-8">
         {/* Logo and contact */}
         <div>
-          <h1 className="text-3xl font-bold mb-3 font-lobster">AsMart</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-3 font-lobster">
+            AsMart
+          </h1>
           <p className="mb-5">Second Hand Market Bangladesh Limited</p>
           <div className="flex items-start gap-2 text-sm mb-1">
             <MdLocationOn className="text-xl" />
@@ -120,13 +122,7 @@ const Footer = () => {
           <h2 className="font-bold text-xl mb-3">Download</h2>
           <div className="flex flex-col gap-3">
             {downloadButtons.map(({ icon: src, alt }, i) => (
-              <Image
-                key={i}
-                src={src}
-                alt={alt}
-                width={150}
-                height={60}
-              />
+              <Image key={i} src={src} alt={alt} width={150} height={60} />
             ))}
           </div>
         </div>

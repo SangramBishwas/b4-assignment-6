@@ -15,18 +15,17 @@ const userUpdateValidationSchema = z.object({
     name: z.string().min(1, 'Name is required').optional(),
     phoneNo: z
       .string()
-      .regex(/^\d{11}$/, 'Phone number must be exactly 11 digits long')
       .optional(),
-    gender: z.enum(['Male', 'Female', 'Other']).default('Other').optional(),
+    gender: z.enum(['Male', 'Female', 'Other', "N/A"]).optional(),
     dateOfBirth: z
       .string()
-      .optional()
-      .refine((value) => !value || !isNaN(Date.parse(value)), {
-        message: 'Invalid date format. Must be a valid date.',
-      })
       .optional(),
-    profileImage: z.string().optional(),
     address: z.string().optional(),
+    street: z.string().optional(),
+    city: z.string().optional(),
+    state: z.string().optional(),
+    postalCode: z.string().optional(),
+    country: z.string().optional(),
   }),
 });
 

@@ -1,12 +1,12 @@
-import { Document, Types } from 'mongoose';
+import { Types } from 'mongoose';
 
 export type ConditionType = 'new' | 'used' | 'refurbished';
 
-export interface IListing extends Document {
+export interface IListing {
   title: string;
   description: string;
   price: number;
-//   categories: Types.ObjectId;
+  categories: Types.ObjectId;
   condition: ConditionType;
   images: string[];
   userID: Types.ObjectId;

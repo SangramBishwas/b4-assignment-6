@@ -1,5 +1,5 @@
 {
-  "name": "assingment-02",
+  "name": "assingment-06",
   "version": "1.0.0",
   "description": "Welcome to the **Stationery Shop** project! This is an e-commerce web application designed to showcase and sell stationery products. The project is built using modern web technologies and is deployed on Vercel.",
   "main": "index.js",
@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "cloudinary": "^2.6.0",
+    "cloudinary": "^1.41.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -24,7 +24,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.0",
-    "multer": "^1.4.5-lts.2",
+    "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
     "zod": "^3.24.3"
   },
@@ -36,7 +36,9 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/multer": "^1.4.12",
-    "globals": "^15.13.0",
+    "@types/node": "^22.14.1",
+    "eslint": "^9.14.0",
+    "globals": "^15.14.0",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.0"

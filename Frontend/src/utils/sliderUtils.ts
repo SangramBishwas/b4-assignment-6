@@ -1,26 +1,30 @@
 export const images = [
     {
         key: 1,
-        img: "https://res.cloudinary.com/dorjgyfdl/image/upload/v1741114341/Image_01_it6ndx.jpg",
+        img: "https://static.vecteezy.com/system/resources/previews/028/201/346/original/flash-sale-banner-with-black-background-and-limited-offer-vector.jpg",
     },
     {
         key: 2,
-        img: "https://res.cloudinary.com/dorjgyfdl/image/upload/v1741114341/Image_04_g68f45.jpg",
+        img: "https://static.vecteezy.com/system/resources/previews/028/201/397/non_2x/flash-sale-banner-with-black-background-and-limited-offer-vector.jpg",
     },
     {
         key: 3,
-        img: "https://res.cloudinary.com/dorjgyfdl/image/upload/v1741114341/Image_03_p1yucq.jpg",
+        img: "https://static.vecteezy.com/system/resources/previews/028/201/393/original/flash-sale-banner-with-red-background-and-limited-offer-vector.jpg",
     },
     {
         key: 4,
-        img: "https://res.cloudinary.com/dorjgyfdl/image/upload/v1741114341/Image_05_ywmyi1.jpg",
+        img: "https://static.vecteezy.com/system/resources/previews/028/201/304/non_2x/flash-sale-banner-with-black-background-and-limited-offer-vector.jpg",
     },
     {
         key: 5,
-        img: "https://res.cloudinary.com/dorjgyfdl/image/upload/v1741114341/Image_06_nsm7xj.jpg",
+        img: "https://static.vecteezy.com/system/resources/previews/028/201/204/original/flash-sale-banner-with-black-background-and-limited-offer-vector.jpg",
     },
     {
         key: 6,
-        img: "https://res.cloudinary.com/dorjgyfdl/image/upload/v1741162956/Image_07_w6lrmx.jpg",
+        img: "https://static.vecteezy.com/system/resources/previews/028/201/477/non_2x/flash-sale-banner-with-background-and-limited-offer-free-vector.jpg",
+    },
+    {
+        key: 7,
+        img: "https://static.vecteezy.com/system/resources/previews/005/009/000/non_2x/flash-sale-banner-template-with-contrast-black-and-yellow-gradient-color-for-media-promotion-and-advertising-vector.jpg",
     },
 ];

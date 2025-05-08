@@ -7,9 +7,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { GalleryVerticalEnd } from "lucide-react";
+import Link from "next/link";
 
 export function TeamSwitcher() {
-
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -17,13 +17,19 @@ export function TeamSwitcher() {
           size="lg"
           className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
         >
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+          <Link
+            href="/"
+            className="flex aspect-square cursor-pointer size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
+          >
             <GalleryVerticalEnd className="size-4" />
-          </div>
-          <div className="mr-5 font-lobster font-bold text-xl">
+          </Link>
+          <Link
+            href="/"
+            className="mr-5 cursor-pointer font-lobster font-bold text-xl"
+          >
             <span>As</span>
             <span>Mart</span>
-          </div>
+          </Link>
         </SidebarMenuButton>
       </SidebarMenuItem>
     </SidebarMenu>

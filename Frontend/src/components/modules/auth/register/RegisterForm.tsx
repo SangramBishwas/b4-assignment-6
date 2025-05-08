@@ -1,8 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Input from "@/components/ui/AMInput";
+import { useUser } from "@/context/UserContext";
+import { registerUser } from "@/services/auth";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 interface FormData {
   name: string;
@@ -12,6 +17,7 @@ interface FormData {
 }
 
 const RegisterForm = () => {
+  const { fetchUser } = useUser();
   const {
     register,
     handleSubmit,
@@ -19,8 +25,29 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log("Registration submitted:", data);
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const modifiedData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+    const toastId = toast.loading("Registering...");
+    console.log("modifiedData__", modifiedData);
+    try {
+      const res = await registerUser(modifiedData);
+      if (res?.success) {
+        await fetchUser();
+        toast.success(res?.message, { id: toastId });
+        router.push("/dashboard/my-account");
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (error: any) {
+      console.log("register form error", error);
+      toast.error(error?.message);
+    }
   };
 
   const password = watch("password");
@@ -79,7 +106,7 @@ const RegisterForm = () => {
 
         <button
           type="submit"
-          className="w-full bg-black text-white py-2 rounded-lg hover:bg-black/90 cursor-pointer transition"
+          className="w-full active:scale-95 bg-black text-white py-2 rounded-lg hover:bg-black/90 cursor-pointer transition"
         >
           Sign Up
         </button>

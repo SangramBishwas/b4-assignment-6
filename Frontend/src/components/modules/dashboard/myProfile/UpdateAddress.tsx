@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import AMImageUploader from "@/components/ui/core/AMImageUploader";
@@ -17,8 +18,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-// import { useUser } from "@/context/UserContext";
-import { useState } from "react";
+import { useUser } from "@/context/UserContext";
+import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,11 +30,13 @@ import {
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-// import { updateProfile } from "@/services/users";
-// import { toast } from "sonner";
-// import { useRouter } from "next/navigation";
+import { getMyProfile, updateProfile } from "@/services/users";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { Calendar } from "@/components/ui/calendar";
 import ImagePreviewer from "@/components/ui/core/AMImageUploader/AMImagePreviwer";
+import { IUser } from "@/types";
+import AMLoading from "@/components/ui/AMLoading";
 
 export const bdDivisions = [
   "Barisal",
@@ -44,89 +47,126 @@ export const bdDivisions = [
   "Rajshahi",
   "Rangpur",
   "Sylhet",
+  "N/A",
 ];
 
 const UpdateAddressForm = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
-  console.log("🚀 ~ UpdateAddressForm ~ imageFiles:", imageFiles)
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
-//   const { user } = useUser();
-//   const router = useRouter();
-
-
+  const [isUser, setIsUser] = useState<IUser | null>(null);
+  // console.log("🚀 ~ UpdateAddressForm ~ isUser:", isUser);
+  const { user } = useUser();
 
   const form = useForm({
     defaultValues: {
-      name: "Naym Hossen",
+      name: "",
       profileImage: "",
-      address: {
-        street: "Housing Socity, Road-11",
-        city: "Dhaka",
-        state: "NY",
-        postalCode: "1207",
-        country: "Bangladesh",
-      },
-      phoneNo: "01770064053",
-      gender: "Male",
+      street: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      country: "",
+      phoneNo: "",
+      gender: "",
       dateOfBirth: "",
     },
   });
+
+  const { setValue } = form;
+
+  useEffect(() => {
+    if (!user?._id) return;
+
+    const fetchData = async () => {
+      try {
+        const userData = await getMyProfile(user?._id);
+        setIsUser(userData.data);
+
+        setValue("name", userData.data.name || "N/A");
+        setValue("profileImage", userData.data.profileImage || "N/A");
+        setValue("street", userData.data.street || "N/A");
+        setValue("city", userData.data.city || "N/A");
+        setValue("state", userData.data.state || "N/A");
+        setValue("postalCode", userData.data.postalCode || "N/A");
+        setValue("country", userData.data.country || "N/A");
+        setValue("phoneNo", userData.data.phoneNo || "N/A");
+        setValue("gender", userData.data.gender || "N/A");
+        setValue("dateOfBirth", "");
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchData();
+  }, [user?._id, setValue]);
+
+  const router = useRouter();
 
   const {
     formState: { isSubmitting },
   } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("🚀 ~ constonSubmit:SubmitHandler<FieldValues>= ~ data:", data)
-    // console.log("modifiedData__", data.address);
+    if (!user?._id) {
+      toast.error("User ID is missing!");
+      return;
+    }
 
-    // if (!user?._id) {
-    //   toast.error("User ID is missing!");
-    //   return;
-    // }
+    const modifiedData = {
+      ...data,
+      dateOfBirth: data.dateOfBirth === "" ? "N/A" : data.dateOfBirth,
+    };
+    console.log(
+      "🚀 ~ constonSubmit:SubmitHandler<FieldValues>= ~ modifiedData:",
+      modifiedData
+    );
 
     const formData = new FormData();
-    formData.append("data", JSON.stringify(data));
+    formData.append("data", JSON.stringify(modifiedData));
 
     if (imageFiles.length > 0) {
       formData.append("profileImage", imageFiles[0] as File);
     }
 
-    // console.log("modifiedData__", formData);
+    console.log(
+      "🚀 ~ constonSubmit:SubmitHandler<FieldValues>= ~ formData:",
+      formData
+    );
 
-    // try {
-    //   const res = await updateProfile(user?._id!, formData);
-    //   // console.log("update Profile", res.data.address);
-
-    //   if (res.success) {
-    //     toast.success(res.message);
-    //     router.push("/user/my-account");
-    //   } else {
-    //     toast.error(res.message);
-    //   }
-    // } catch (err: any) {
-    //   console.error(err);
-    // }
+    try {
+      const res = await updateProfile(user?._id, formData);
+      if (res.success) {
+        toast.success(res.message);
+        router.push("/dashboard/my-account");
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err: any) {
+      console.error(err);
+    }
   };
+
+  if (!isUser) {
+    return <AMLoading />;
+  }
 
   return (
     <>
-      <div className="font-madimi">
+      <div className="font-madimi ">
         <div>
-          <h2 className=" text-3xl font-semibold">Update Your Profile</h2>
+          <h2 className="text-3xl font-semibold">Update Your Profile</h2>
         </div>
-        <div className=" w-full border-b border-neutral-300 py-4" />
-        <div className=" mt-6">
-          <h3 className=" text-2xl font-medium">
+        <div className="w-full border-b border-neutral-300 py-4" />
+        <div className="mt-6">
+          <h3 className="text-2xl font-medium">
             Change your address details if you need!
           </h3>
         </div>
       </div>
 
-      {/* Update profile address form */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="mt-5 border-2 border-gray-200 font-madimi bg-white rounded-xl flex-grow p-5 sm:p-10">
+          <div className="mt-5 border-2 border-gray-200 font-madimi bg-white dark:bg-gray-800 rounded-xl flex-grow p-5 sm:p-10">
             <div className="grid grid-cols-1 gap-4">
               <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
                 <div className="flex flex-col gap-4">
@@ -177,10 +217,10 @@ const UpdateAddressForm = () => {
                 </div>
               </div>
 
-              <div className=" grid grid-cols-1 md:grid-cols-2 w-full gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4">
                 <FormField
                   control={form.control}
-                  name="address.street"
+                  name="street"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Your Street</FormLabel>
@@ -194,7 +234,7 @@ const UpdateAddressForm = () => {
 
                 <FormField
                   control={form.control}
-                  name="address.state"
+                  name="state"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Your State</FormLabel>
@@ -207,7 +247,7 @@ const UpdateAddressForm = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="address.postalCode"
+                  name="postalCode"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Your Postal Code</FormLabel>
@@ -220,7 +260,7 @@ const UpdateAddressForm = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="address.country"
+                  name="country"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Your Country</FormLabel>
@@ -232,7 +272,7 @@ const UpdateAddressForm = () => {
                   )}
                 />
               </div>
-              <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
                 <FormField
                   control={form.control}
                   name="gender"
@@ -248,10 +288,11 @@ const UpdateAddressForm = () => {
                             <SelectValue placeholder="Select Your Gender" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className=" bg-gray-100">
+                        <SelectContent className="bg-gray-100 font-madimi">
                           <SelectItem value="Male">Male</SelectItem>
                           <SelectItem value="Female">Female</SelectItem>
                           <SelectItem value="Other">Other</SelectItem>
+                          <SelectItem value="N/A">N/A</SelectItem>
                         </SelectContent>
                       </Select>
 
@@ -262,7 +303,7 @@ const UpdateAddressForm = () => {
 
                 <FormField
                   control={form.control}
-                  name="address.city"
+                  name="city"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Your City</FormLabel>
@@ -275,7 +316,7 @@ const UpdateAddressForm = () => {
                             <SelectValue placeholder="Select Your City" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className=" bg-gray-100">
+                        <SelectContent className="font-madimi bg-gray-100">
                           {bdDivisions?.map((place, index) => (
                             <SelectItem key={index} value={place}>
                               {place}
@@ -319,6 +360,7 @@ const UpdateAddressForm = () => {
                           align="start"
                         >
                           <Calendar
+                            className="border border-black rounded-xl font-madimi"
                             mode="single"
                             selected={
                               field.value ? new Date(field.value) : undefined
@@ -342,7 +384,7 @@ const UpdateAddressForm = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="mt-5 w-full bg-black text-white hover:bg-black/80 hover:cursor-pointer"
+              className="mt-5 w-full active:scale-95 bg-black text-white hover:bg-black/80 hover:cursor-pointer"
             >
               {isSubmitting ? "Updating...." : "Update Profile"}
             </Button>
